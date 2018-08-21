@@ -1,4 +1,4 @@
 
 #!/bin/bash
 
-gcc *.c -o binaries/generator;
+gcc *.c -o generator;
