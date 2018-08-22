@@ -1,4 +1,4 @@
 
 #!/bin/bash
 
-gcc *.c -o tests -lcunit;
+gcc *.c ../alphabet.c -o tests -lcunit;

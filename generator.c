@@ -1,16 +1,10 @@
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-
-char* next_word(char* word);
+#include "generator.h"
 
 int main(int argc, char** argv){
 	char* string = "a";
 	const char* last_word = "zzzz";
+
 	while( strcmp(string, last_word) != 0 ){
-//		printf("Word: %s\t", string);
 		printf("%s\t", string);
 		string = next_word(string);
 	}
