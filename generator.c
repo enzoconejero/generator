@@ -1,13 +1,14 @@
 #include "generator.h"
 
 int main(int argc, char** argv){
-	char* string = "a";
+	char* string = strdup(INITAL_WORD);
 	const char* last_word = "zzzz";
 
-	while( strcmp(string, last_word) != 0 ){
-		printf("%s\t", string);
-		string = next_word(string);
-	}
+	char* previus;
+	for(char* string = strdup(INITAL_WORD);
+			strcmp(string,last_word) != 0;
+			printf("%s\t", string), previus = string, string = next_word(string), free(previus));
+
 
 	printf("%s\t", last_word);
 	printf("\n");
@@ -16,21 +17,15 @@ int main(int argc, char** argv){
 
 char* next_word(char* word){
 	char* next;
-
 	size_t length = strlen(word);
-	bool is_last_word = true;
 
-	for(int i = 0; i < length && is_last_word; i++){
-		is_last_word = is_last_word && (word[i] == 'z');
-	}
-
-	if(is_last_word){
+	if(is_last_word(word)){
 		next = (char*) malloc(length + 2); //1 for '\0'
 		for(int i = 0; i < length + 1; i++){
 			next[i] = 'a';
 		}
 		next[length+1] = '\0';
-		return next;
+
 	}
 	else{
 		next = strdup(word);
@@ -40,6 +35,15 @@ char* next_word(char* word){
 			i--;
 		}
 		next[i] += 1;
-		return next;
 	}
+
+	return next;
+}
+
+bool is_last_word(char* word){
+	bool is_last = true;
+	for(int i = 0; i < strlen(word) && is_last; i++){
+		is_last = is_last && (word[i] == 'z');
+	}
+	return is_last;
 }
