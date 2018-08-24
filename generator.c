@@ -9,7 +9,6 @@ int main(int argc, char** argv){
 			strcmp(string,last_word) != 0;
 			printf("%s\t", string), previus = string, string = next_word(string), free(previus));
 
-
 	printf("%s\t", last_word);
 	printf("\n");
 	return 0;

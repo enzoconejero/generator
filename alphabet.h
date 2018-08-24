@@ -6,17 +6,10 @@
 
 #define LETTERS_COUNT ('z' - 'a' + 1)
 
-//using ADT cause it may change
-typedef char t_element;
-
 typedef struct{
-	size_t total;
-	t_element* elements;
-}t_char_alphabet;
-
-t_char_alphabet* create_char_alphabet();
-void alphabet_add_elements(t_char_alphabet* alphabet, t_element* new_elements, size_t new_elements_count);
-void alphabet_remove_all_elements(t_char_alphabet* alphabet);
+	size_t elements_count;
+	char* elements;
+}t_alphabet;
 
 typedef enum{
 	ALL,
@@ -25,7 +18,12 @@ typedef enum{
 	NUMBERS
 }e_letters_group;
 
-t_element* get_letters(e_letters_group group);
-t_element* ascii();
+char* get_letters(e_letters_group group);
+char* get_ascii();
+void alphabet_remove_all_elements(t_alphabet* alphabet);
+
+//For generichs languajes
+t_alphabet* alphabet_create();
+void alphabet_add_elements(t_alphabet* alphabet, char* elements, size_t new_elements_count);
 
 #endif
