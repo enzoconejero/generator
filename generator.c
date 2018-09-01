@@ -2,15 +2,19 @@
 
 int main(int argc, char** argv){
 	char* string = strdup(INITAL_WORD);
-	const char* last_word = "zzzz";
+	const char* last_word = "zzz";
 
-	char* previus;
-	for(char* string = strdup(INITAL_WORD);
-			strcmp(string,last_word) != 0;
-			printf("%s\t", string), previus = string, string = next_word(string), free(previus));
+//	char* previus;
+//	for(char* string = strdup(INITAL_WORD);
+//			strcmp(string,last_word) != 0;
+//			printf("%s\t", string), previus = string, string = next_word(string), free(previus));
+//
+//	printf("%s\t", last_word);
+//	printf("\n");
 
-	printf("%s\t", last_word);
-	printf("\n");
+	t_language* low = language_create();
+	low->alphabet = alphabet_create();
+
 	return 0;
 }
 
