@@ -4,10 +4,15 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
 #include "../language.h"
 
+//#define LETTERS_COUNT ('z' - 'a' + 1)
+
 void testLanguagesCreator();
+void testSetAlphabet();
+void testEqualElement();
 
 #endif /* TESTS_LANGUAGUES_TEST_H_ */

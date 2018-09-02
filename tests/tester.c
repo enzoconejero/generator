@@ -19,6 +19,8 @@ int main(int argc, char** argv){
 
 	CU_pSuite languages = CU_add_suite("Languages tests", NULL, NULL);
 	CU_add_test(languages, "Constructor", testLanguagesCreator);
+	CU_add_test(languages, "Set alphabet", testSetAlphabet);
+	CU_add_test(languages, "Set equals", testEqualElement);
 
 	CU_basic_set_mode(CU_BRM_VERBOSE);
 	CU_basic_run_tests();

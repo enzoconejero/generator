@@ -100,9 +100,12 @@ void testGetNumbersElements(){
 
 void testAlphabetAlphaNumeric(){
 	t_alphabet* alphabet = alphabet_create();
-	alphabet_add_element(alphabet, element_get_lowCase(), LETTERS_COUNT, sizeof(char));
+	alphabet_set_element(alphabet, element_get_lowCase(), LETTERS_COUNT, sizeof(char));
 	alphabet_add_element(alphabet, element_get_upCase(), LETTERS_COUNT, sizeof(char));
 	alphabet_add_element(alphabet, element_get_numbers(), 10, sizeof(char));
+
+	CU_ASSERT_EQUAL(alphabet->elements_count, LETTERS_COUNT*2 + 10);
+
 	for(char i = 0; i < LETTERS_COUNT; i++){
 		CU_ASSERT_EQUAL( ((char*)alphabet->elements)[i] , 'a' + i );
 	}

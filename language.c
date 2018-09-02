@@ -4,6 +4,7 @@
 t_language* language_create(){
 	t_language* language = (t_language*) malloc(sizeof(t_language));
 	language->alphabet = alphabet_create();
+	language->equals = NULL;
 	return language;
 }
 
@@ -14,7 +15,10 @@ void language_destroy(t_language* language){
 }
 
 void language_set_alphabet(t_language* language, t_alphabet* alphabet){
-	alphabet_destroy(alphabet);
+	alphabet_destroy(language->alphabet);
 	language->alphabet = alphabet;
 }
 
+void language_set_equal(t_language* language, bool(*equal)(void*,void*)){
+	language->equals = equal;
+}

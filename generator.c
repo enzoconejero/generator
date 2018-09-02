@@ -13,8 +13,6 @@ int main(int argc, char** argv){
 //	printf("\n");
 
 	t_language* low = language_create();
-	low->alphabet = alphabet_create();
-
 	return 0;
 }
 
