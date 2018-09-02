@@ -16,8 +16,8 @@ void alphabet_destroy(t_alphabet* alphabet){
 	if(alphabet != NULL){
 		free(alphabet->elements);
 		free(alphabet);
-		alphabet = NULL;
 	}
+	alphabet = NULL;
 }
 
 //Tested
@@ -56,6 +56,7 @@ void alphabet_add_element(t_alphabet* alphabet, void* elements, size_t elements_
 		memcpy(alphabet->elements + old_size, elements, new_size);
 		alphabet->elements_count += elements_count;
 		alphabet->elements_size = elements_size;
+		free(alphabet->last_element);
 		alphabet->last_element = malloc(elements_size);
 		memcpy(alphabet->last_element,
 				elements + elements_size*(elements_count-1),
@@ -88,4 +89,3 @@ char* element_get_numbers(){
 	for(int i = 0; i < 10; elements[i] = '0' + i, i++);
 	return elements;
 }
-

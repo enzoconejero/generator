@@ -7,7 +7,6 @@
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
 #include "../alphabet.h"
-#include "../language.h"
 
 //#define LETTERS_COUNT ('z' - 'a' + 1)
 

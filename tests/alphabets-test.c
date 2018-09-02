@@ -97,3 +97,19 @@ void testGetNumbersElements(){
 		CU_ASSERT_EQUAL( numbers[i] , '0' + i);
 	}
 }
+
+void testAlphabetAlphaNumeric(){
+	t_alphabet* alphabet = alphabet_create();
+	alphabet_add_element(alphabet, element_get_lowCase(), LETTERS_COUNT, sizeof(char));
+	alphabet_add_element(alphabet, element_get_upCase(), LETTERS_COUNT, sizeof(char));
+	alphabet_add_element(alphabet, element_get_numbers(), 10, sizeof(char));
+	for(char i = 0; i < LETTERS_COUNT; i++){
+		CU_ASSERT_EQUAL( ((char*)alphabet->elements)[i] , 'a' + i );
+	}
+	for(char i = 0; i < LETTERS_COUNT; i++){
+		CU_ASSERT_EQUAL( ((char*)alphabet->elements)[i+LETTERS_COUNT] , 'A' + i );
+	}
+	for(char i = 0; i < 10; i++){
+		CU_ASSERT_EQUAL( ((char*)alphabet->elements)[i+LETTERS_COUNT*2] , '0' + i );
+	}
+}

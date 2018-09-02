@@ -6,9 +6,9 @@
 
 typedef struct{
 	size_t elements_count;
-	size_t elements_size; //Must be unalterable
+	size_t elements_size;
 	void* elements;
-	void* last_element; //Must redefine to void*
+	void* last_element;
 }t_alphabet;
 
 
