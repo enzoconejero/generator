@@ -7,7 +7,8 @@ void testAlphabetCreator(){
 	CU_ASSERT( alphabet->elements == NULL );
 	CU_ASSERT( alphabet->elements_count == 0 );
 	CU_ASSERT( alphabet->elements_size == 0 );
-	CU_ASSERT( alphabet->last_element == '\0');
+	CU_ASSERT( alphabet->last_element == NULL);
+	alphabet_destroy(alphabet);
 }
 
 void testSetElemts(){
@@ -21,6 +22,12 @@ void testSetElemts(){
 	for(int i = 0; i < 5; i++){
 		CU_ASSERT_EQUAL( ((int*) (alphabet->elements))[i], i);
 	}
+
+	CU_ASSERT_EQUAL(alphabet->elements_count, 5);
+	CU_ASSERT_EQUAL(alphabet->elements_size, sizeof(int));
+	CU_ASSERT_EQUAL( *((int*)(alphabet->last_element)), 4);
+
+	alphabet_destroy(alphabet);
 }
 
 void testAddElemtsInEmptyAlphabet(){
@@ -35,6 +42,12 @@ void testAddElemtsInEmptyAlphabet(){
 	for(int i = 0; i < 5; i++){
 		CU_ASSERT_EQUAL( ((int*) (alphabet->elements))[i], i);
 	}
+
+	CU_ASSERT_EQUAL(alphabet->elements_count, 5);
+	CU_ASSERT_EQUAL(alphabet->elements_size, sizeof(int));
+	CU_ASSERT_EQUAL(*((int*)(alphabet->last_element)), 4);
+
+	alphabet_destroy(alphabet);
 }
 
 void testAddElemtsInNotEmptyAlphabet(){
@@ -46,10 +59,6 @@ void testAddElemtsInNotEmptyAlphabet(){
 	}
 	alphabet_set_element(alphabet, elements_set, 5, sizeof(int));
 
-	for(int i = 0; i < 5; i++){
-		CU_ASSERT_EQUAL( ((int*) (alphabet->elements))[i], i);
-	}
-
 	//New elements array create
 	int* elements_add = malloc(sizeof(int) * 5);
 	for(int i = 0; i < 5; i++){
@@ -60,6 +69,12 @@ void testAddElemtsInNotEmptyAlphabet(){
 	for(int i = 0; i < 5; i++){
 		CU_ASSERT_EQUAL( ((int*) (alphabet->elements))[i+5], i+5);
 	}
+
+	CU_ASSERT_EQUAL(alphabet->elements_count, 10);
+	CU_ASSERT_EQUAL(alphabet->elements_size, sizeof(int));
+	CU_ASSERT_EQUAL(*((int*)(alphabet->last_element)), 9);
+
+	alphabet_destroy(alphabet);
 }
 
 void testGetLowCasesElements(){

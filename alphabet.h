@@ -6,9 +6,9 @@
 
 typedef struct{
 	size_t elements_count;
-	size_t elements_size;
+	size_t elements_size; //Must be unalterable
 	void* elements;
-	char last_element;
+	void* last_element; //Must redefine to void*
 }t_alphabet;
 
 
@@ -24,11 +24,15 @@ void alphabet_set_element(t_alphabet* alphabet, void* elements, size_t elements_
 /*Add elements to the existing into the alphabet*/
 void alphabet_add_element(t_alphabet* alphabet, void* elements, size_t elements_count, size_t elements_size);
 
+/*Get chars A-Z*/
 char* element_get_upCase();
 
+/*Get chars a-z*/
 char* element_get_lowCase();
 
+/*Get chars 0-9*/
 char* element_get_numbers();
 
 
 #endif
+
