@@ -1,80 +1,6 @@
 
 #include "alphabet.h"
 
-//void alphabet_remove_all_elements(t_alphabet* alphabet){
-//	free(alphabet->elements);
-//	alphabet->elements = NULL;
-//}
-//
-//char* get_letters(e_letters_group group){
-//	char* letters = NULL;
-//	switch(group){
-//	case LOW:
-//		letters = (char*) malloc( sizeof(char) * LETTERS_COUNT);
-//		for(int i = 0; i < LETTERS_COUNT; i++){
-//			letters[i] = 'a' + i;
-//		}
-//		break;
-//
-//	case CAPITAL:
-//		letters = (char*) malloc( sizeof(char) * LETTERS_COUNT);
-//		for(int i = 0; i < LETTERS_COUNT; i++){
-//			letters[i] = 'A' + i;
-//		}
-//		break;
-//
-//	case NUMBERS:
-//		letters = (char*) malloc( sizeof(char) * 10);
-//		for(int i = 0; i < 10; i++){
-//			letters[i] = '0' + i;
-//		}
-//		break;
-//
-//	case ALL:
-//		letters = (char*) malloc( sizeof(char) * (LETTERS_COUNT*2 + 10) );
-//		for(int i = 0; i < LETTERS_COUNT; i++){
-//			letters[i] = 'a' + i;
-//		}
-//		for(int i = 0; i < LETTERS_COUNT; i++){
-//			letters[LETTERS_COUNT + i] = 'A' + i;
-//		}
-//		for(int i = 0; i < 10; i++){
-//			letters[LETTERS_COUNT*2 + i] = '0' + i;
-//		}
-//		break;
-//
-//	default: break;
-//	}
-//
-//	return letters;
-//}
-//
-//char* get_ascii(){
-//	char* all_ascii = (char*) malloc( sizeof(char) * 10);
-//	for(char i = 0; i < 256; i++){
-//		all_ascii[i] = '0' + i;
-//	}
-//	return all_ascii;
-//}
-//
-//t_alphabet* alphabet_create(){
-//	t_alphabet* alphabet = (t_alphabet*) malloc(sizeof(t_alphabet));
-//	alphabet->elements = NULL;
-//	alphabet->elements_count = 0;
-//	return alphabet;
-//}
-//
-//void alphabet_add_elements(t_alphabet* alphabet, char* elements, size_t new_elements_count){
-//	size_t size_all_elements = alphabet->elements_count + new_elements_count;
-//	char* all_elements = malloc(size_all_elements);
-//	memset(all_elements, 0, size_all_elements);
-//	memcpy(all_elements, alphabet->elements, alphabet->elements_count);
-//	memcpy(all_elements + alphabet->elements_count, elements, new_elements_count);
-//
-//	free(alphabet->elements);
-//	alphabet->elements_count += new_elements_count;
-//}
-
 //Tested
 t_alphabet* alphabet_create(){
 	t_alphabet* alphabet = (t_alphabet*) malloc(sizeof(t_alphabet));
@@ -105,6 +31,7 @@ void alphabet_set_element(t_alphabet* alphabet, void* elements, size_t elements_
 	alphabet->elements_size = elements_size;
 }
 
+//Tested
 void alphabet_add_element(t_alphabet* alphabet, void* elements, size_t elements_count, size_t elements_size){
 	size_t old_size = alphabet->elements_count * alphabet->elements_size;
 	size_t new_size = elements_count * elements_size;
@@ -112,75 +39,26 @@ void alphabet_add_element(t_alphabet* alphabet, void* elements, size_t elements_
 	memcpy(alphabet->elements + old_size, elements, new_size);
 }
 
-//void alphabet_set_elements(t_alphabet* alphabet, char* elements, size_t element_count){
-//	if(alphabet != NULL){
-//		if(alphabet->elements == NULL){
-//			free(alphabet->elements);
-//		}
-//		//Repeated logic in set_elements
-//		alphabet->elements = (char*)malloc(element_count);
-//		memset(alphabet->elements, 0, element_count);
-//		memcpy(alphabet->elements, elements, element_count);
-//
-//		alphabet->elements_count = element_count;
-//		alphabet->last_element = alphabet->elements[alphabet->elements_count - 1];
-//
-//	}
-//	else{
-//		printf("[ERROR]: El alfabeto no existe\n");
-//		exit(0);
-//	}
-//}
-//
-//void alphabet_add_elements(t_alphabet* alphabet, char* elements, size_t element_count){
-//	if(alphabet != NULL){
-//		if(alphabet->elements == NULL){
-//			//Repeated logic in set_elements
-//			alphabet->elements = (char*)malloc(element_count);
-//			memset(alphabet->elements, 0, element_count);
-//			memcpy(alphabet->elements, elements, element_count);
-//
-//			alphabet->elements_count = element_count;
-//			alphabet->last_element = alphabet->elements[alphabet->elements_count - 1];
-//		}
-//		else{
-//			//Must check te characters do not repeat
-//			size_t new_element_count = alphabet->elements_count + element_count;
-//			alphabet->elements = realloc(alphabet->elements, new_element_count);
-//			memset(alphabet->elements + alphabet->elements_count, 0, element_count);
-//			memcpy(alphabet->elements + alphabet->elements_count, elements, element_count);
-//
-//			alphabet->elements_count += element_count;
-//			alphabet->last_element = alphabet->elements[alphabet->elements_count-1];
-//		}
-//
-//	}
-//	else{
-//		printf("[ERROR]: El alfabeto no existe\n");
-//		exit(0);
-//	}
-//}
-//
-//void alphabet_remove_elements(t_alphabet* alphabet){
-//	if(alphabet != NULL){
-//		alphabet->elements = NULL;
-//	}
-//	else{
-//		printf("[ERROR]: El alfabeto no existe\n");
-//		exit(0);
-//	}
-//}
-//
-//void alphabet_remove_and_free_elements(t_alphabet* alphabet){
-//	if(alphabet != NULL){
-//		free(alphabet->elements);
-//		alphabet->elements = NULL;
-//	}
-//	else{
-//		printf("[ERROR]: El alfabeto no existe\n");
-//		exit(0);
-//	}
-//}
+char* element_get_upCase(){
+	char* elements = malloc(LETTERS_COUNT);
+	for(int i = 0; i < LETTERS_COUNT; elements[i] = 'A' + i, i++);
+	return elements;
+}
+
+char* element_get_lowCase(){
+	char* elements = malloc(LETTERS_COUNT);
+	for(int i = 0; i < LETTERS_COUNT; elements[i] = 'a' + i, i++);
+	return elements;
+}
+
+char* element_get_numbers(){
+	char* elements = malloc(10);
+	for(int i = 0; i < 10; elements[i] = '0' + i, i++);
+	return elements;
+}
+
+
+
 //
 //void elements_get_upCase(t_alphabet* alphabet){
 //	char* elements = malloc(LETTERS_COUNT);
