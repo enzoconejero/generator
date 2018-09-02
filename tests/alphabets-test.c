@@ -62,83 +62,23 @@ void testAddElemtsInNotEmptyAlphabet(){
 	}
 }
 
-//void testAlphabetsLow(){
-//	char* alphabet = get_letters(LOW);
-//	for(int i = 0; i < LETTERS_COUNT; i++){
-//		CU_ASSERT_EQUAL(alphabet[i], 'a'+i);
-//	}
-//
-//	t_alphabet* alfa = alphabet_create();
-//	alphabet_add_elements(alfa, alphabet, LETTERS_COUNT);
-//	t_language* language = language_create();
-//	language_set_alphabet(language, alfa);
-//	CU_ASSERT_EQUAL(alfa->elements_count, LETTERS_COUNT);
-//	for(int i = 0; i < language->alphabet->elements_count; i++){
-//		CU_ASSERT_EQUAL(language->alphabet->elements[i], 'a'+i);
-//	}
-//}
-//
-//void testAlphabetsCapital(){
-//	char* alphabet = get_letters(CAPITAL);
-//	for(int i = 0; i < LETTERS_COUNT; i++){
-//		CU_ASSERT_EQUAL(alphabet[i], 'A'+i);
-//	}
-//
-//	t_alphabet* alfa = alphabet_create();
-//	alphabet_add_elements(alfa, alphabet, LETTERS_COUNT);
-//	t_language* language = language_create();
-//	language_set_alphabet(language, alfa);
-//	CU_ASSERT_EQUAL(alfa->elements_count, LETTERS_COUNT);
-//	for(int i = 0; i < language->alphabet->elements_count; i++){
-//		CU_ASSERT_EQUAL(language->alphabet->elements[i], 'a'+i);
-//	}
-//}
-//
-//void testAlphabetsNumber(){
-//	char* alphabet = get_letters(NUMBERS);
-//	for(int i = 0; i < 10; i++){
-//		CU_ASSERT_EQUAL(alphabet[i], '0'+i);
-//	}
-//
-//	t_alphabet* alfa = alphabet_create();
-//	alphabet_add_elements(alfa, alphabet, 10);
-//	t_language* language = language_create();
-//	language_set_alphabet(language, alfa);
-//	CU_ASSERT_EQUAL(alfa->elements_count, 10);
-//	for(int i = 0; i < language->alphabet->elements_count; i++){
-//		CU_ASSERT_EQUAL(language->alphabet->elements[i], 'a'+i);
-//	}
-//}
-//
-//void testAlphabetsAlphaNumeric(){
-//	char* alphabet = get_letters(ALL);
-//	for(int i = 0; i < LETTERS_COUNT; i++){
-//		CU_ASSERT_EQUAL(alphabet[i], 'a'+i);
-//	}
-//
-//	for(int i = 0; i < LETTERS_COUNT; i++){
-//		CU_ASSERT_EQUAL(alphabet[LETTERS_COUNT+i], 'A'+i);
-//	}
-//
-//	for(int i = 0; i < 10; i++){
-//		CU_ASSERT_EQUAL(alphabet[LETTERS_COUNT*2+i], '0'+i);
-//	}
-//
-//	t_alphabet* alfa = alphabet_create();
-//	alphabet_add_elements(alfa, alphabet, 256);
-//	t_language* language = language_create();
-//	language_set_alphabet(language, alfa);
-//	CU_ASSERT_EQUAL(alfa->elements_count, 256);
-//
-//	for(int i = 0; i < LETTERS_COUNT; i++){
-//		CU_ASSERT_EQUAL(language->alphabet->elements[i], 'a'+i);
-//	}
-//
-//	for(int i = 0; i < LETTERS_COUNT; i++){
-//		CU_ASSERT_EQUAL(language->alphabet->elements[LETTERS_COUNT+i], 'A'+i);
-//	}
-//
-//	for(int i = 0; i < 10; i++){
-//		CU_ASSERT_EQUAL(language->alphabet->elements[LETTERS_COUNT*2+i], '0'+i);
-//	}
-//}
+void testGetLowCasesElements(){
+	char* lowCases = element_get_lowCase();
+	for(char i = 0; i < LETTERS_COUNT; i++){
+		CU_ASSERT_EQUAL( lowCases[i] , 'a' + i );
+	}
+}
+
+void testGetUpCasesElements(){
+	char* upCases = element_get_upCase();
+	for(int i = 0; i < LETTERS_COUNT; i++){
+		CU_ASSERT_EQUAL( upCases[i] , 'A' + i );
+	}
+}
+
+void testGetNumbersElements(){
+	char* numbers = element_get_numbers();
+	for(int i = 0; i < 10; i++){
+		CU_ASSERT_EQUAL( numbers[i] , '0' + i);
+	}
+}

@@ -9,12 +9,14 @@
 #include "../alphabet.h"
 #include "../language.h"
 
-//void testAlphabetsLow();
-//void testAlphabetsCapital();
-//void testAlphabetsNumber();
-//void testAlphabetsAlphaNumeric();
+//#define LETTERS_COUNT ('z' - 'a' + 1)
+
 void testAlphabetCreator();
 void testSetElemts();
 void testAddElemtsInEmptyAlphabet();
 void testAddElemtsInNotEmptyAlphabet();
+void testGetLowCasesElements();
+void testGetUpCasesElements();
+void testGetNumbersElements();
+
 #endif /* TESTS_ALPHABETS_TEST_H_ */
