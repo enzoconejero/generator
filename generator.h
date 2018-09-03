@@ -4,6 +4,7 @@
 
 #include "commons-includes.h"
 #include "alphabet.h"
+#include "language.h"
 
 #define INITAL_WORD "a"
 

@@ -1,0 +1,9 @@
+Do:
+-Languages has Alphabets
+-Alphabets has Elements.
+-Alphabets hnows the las Element.
+-Languages has an Equal function initialy null that return if an element is equal to other
+
+ToDo:
+-Control elements cant repeat in an alphabet
+-Control last is > than first

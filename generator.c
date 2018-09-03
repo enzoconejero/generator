@@ -4,6 +4,9 @@ int main(int argc, char** argv){
 	char* string = strdup(INITAL_WORD);
 	const char* last_word = "zzz";
 
+	t_language* names = language_create();
+	alphabet_set_element(names->alphabet, element_get_upCase(), LETTERS_COUNT, sizeof(char));
+
 //	char* previus;
 //	for(char* string = strdup(INITAL_WORD);
 //			strcmp(string,last_word) != 0;
@@ -12,7 +15,6 @@ int main(int argc, char** argv){
 //	printf("%s\t", last_word);
 //	printf("\n");
 
-	t_language* low = language_create();
 	return 0;
 }
 
