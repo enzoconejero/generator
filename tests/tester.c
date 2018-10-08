@@ -5,22 +5,24 @@ void testBasico();
 
 int main(int argc, char** argv){
 	CU_initialize_registry();
-	CU_pSuite prueba = CU_add_suite("Suite de prueba", NULL, NULL);
-	CU_add_test(prueba, "Basico", testBasico);
+	CU_pSuite prueba = CU_add_suite("Test suite", NULL, NULL);
+	CU_add_test(prueba, "Basic", testBasico);
 
 	CU_pSuite alphabets = CU_add_suite("Alphabets tests", NULL, NULL);
-	CU_add_test(alphabets, "Constructor", testAlphabetCreator);
-	CU_add_test(alphabets, "Set elements", testSetElemts);
-	CU_add_test(alphabets, "Add elements in empty alphabet", testAddElemtsInEmptyAlphabet);
-	CU_add_test(alphabets, "Add elements in not empty alphabet", testAddElemtsInNotEmptyAlphabet);
 	CU_add_test(alphabets, "Get lowCase elements", testGetLowCasesElements);
 	CU_add_test(alphabets, "Get upCase elements", testGetUpCasesElements);
 	CU_add_test(alphabets, "Get numbers elements", testGetNumbersElements);
+	CU_add_test(alphabets, "Char equals", testCharEqual);
+	CU_add_test(alphabets, "Set equals", testSetEquals);
+	CU_add_test(alphabets, "Set unrepeated elements", testSetElements);
 
-	CU_pSuite languages = CU_add_suite("Languages tests", NULL, NULL);
-	CU_add_test(languages, "Constructor", testLanguagesCreator);
-	CU_add_test(languages, "Set alphabet", testSetAlphabet);
-	CU_add_test(languages, "Set equals", testEqualElement);
+//	CU_add_test(alphabets, "Constructor", testAlphabetCreator);
+//	CU_add_test(alphabets, "Set elements", testSetElements);
+//	CU_add_test(alphabets, "Add elements in empty alphabet", testAddElemtsInEmptyAlphabet);
+//	CU_add_test(alphabets, "Add elements in not empty alphabet", testAddNewElemtsInNotEmptyAlphabet);
+
+//	CU_pSuite languages = CU_add_suite("Languages tests", NULL, NULL);
+//	CU_add_test(languages, "Constructor", testLanguagesCreator);
 
 	CU_basic_set_mode(CU_BRM_VERBOSE);
 	CU_basic_run_tests();

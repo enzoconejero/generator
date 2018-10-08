@@ -1,9 +1,10 @@
 Do:
 -Languages has Alphabets
 -Alphabets has Elements.
--Alphabets hnows the las Element.
+-Alphabets hnows the last Element.
 -Languages has an Equal function initialy null that return if an element is equal to other
 
 ToDo:
--Control elements cant repeat in an alphabet
+-Filter repeated elements at set/update an alphabet
 -Control last is > than first
+-Define default equal

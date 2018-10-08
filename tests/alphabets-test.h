@@ -10,12 +10,16 @@
 
 //#define LETTERS_COUNT ('z' - 'a' + 1)
 
-void testAlphabetCreator();
-void testSetElemts();
-void testAddElemtsInEmptyAlphabet();
-void testAddElemtsInNotEmptyAlphabet();
 void testGetLowCasesElements();
 void testGetUpCasesElements();
 void testGetNumbersElements();
+void testCharEqual();
+void testAlphabetCreator();
+void testSetEquals();
+
+void testSetElements();
+
+void testAddElemtsInEmptyAlphabet();
+void testAddNewElemtsInNotEmptyAlphabet();
 
 #endif /* TESTS_ALPHABETS_TEST_H_ */
