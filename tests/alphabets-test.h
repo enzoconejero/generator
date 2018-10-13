@@ -3,6 +3,7 @@
 #define TESTS_ALPHABETS_TEST_H_
 
 #include <stdio.h>
+#include <time.h>
 #include <stdbool.h>
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
@@ -14,12 +15,14 @@ void testGetLowCasesElements();
 void testGetUpCasesElements();
 void testGetNumbersElements();
 void testCharEqual();
-void testAlphabetCreator();
+void testInt8Equal();
+void testAlphabetCreate();
 void testSetEquals();
-
-void testSetElements();
-
-void testAddElemtsInEmptyAlphabet();
-void testAddNewElemtsInNotEmptyAlphabet();
+void testSetElementsInEmptyAlphabet();
+void testSetElementsInNoEmptyAlphabet();
+void testSetRepeatedElementsInNoEmptyAlphabet();
+void testAddElementsInEmptyAlphabet();
+void testAddElementsInNotEmptyAlphabet();
+void testAddRepeatedElementsInNotEmptyAlphabet();
 
 #endif /* TESTS_ALPHABETS_TEST_H_ */

@@ -7,14 +7,6 @@ int main(int argc, char** argv){
 	t_language* names = language_create();
 	alphabet_set_element(names->alphabet, element_get_upCase(), LETTERS_COUNT, sizeof(char));
 
-//	char* previus;
-//	for(char* string = strdup(INITAL_WORD);
-//			strcmp(string,last_word) != 0;
-//			printf("%s\t", string), previus = string, string = next_word(string), free(previus));
-//
-//	printf("%s\t", last_word);
-//	printf("\n");
-
 	return 0;
 }
 

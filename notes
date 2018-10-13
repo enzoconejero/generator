@@ -5,6 +5,5 @@ Do:
 -Languages has an Equal function initialy null that return if an element is equal to other
 
 ToDo:
--Filter repeated elements at set/update an alphabet
 -Control last is > than first
 -Define default equal
