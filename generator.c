@@ -1,12 +1,6 @@
 #include "generator.h"
 
 int main(int argc, char** argv){
-	char* string = strdup(INITAL_WORD);
-	const char* last_word = "zzz";
-
-	t_language* names = language_create();
-	alphabet_set_element(names->alphabet, element_get_upCase(), LETTERS_COUNT, sizeof(char));
-
 	return 0;
 }
 

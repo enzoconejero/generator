@@ -2,8 +2,7 @@ Do:
 -Languages has Alphabets
 -Alphabets has Elements.
 -Alphabets hnows the last Element.
--Languages has an Equal function initialy null that return if an element is equal to other
+-Alphabets has an Equal function initialy null that return if an element is equal to other
 
 ToDo:
 -Control last is > than first
--Define default equal

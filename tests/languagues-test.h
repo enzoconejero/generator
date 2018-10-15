@@ -11,8 +11,7 @@
 
 //#define LETTERS_COUNT ('z' - 'a' + 1)
 
-//void testLanguagesCreator();
-//void testSetAlphabet();
-//void testEqualElement();
+void testLanguageCreate();
+void testSetAlphabet();
 
 #endif /* TESTS_LANGUAGUES_TEST_H_ */
