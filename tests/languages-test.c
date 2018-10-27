@@ -1,5 +1,5 @@
 
-#include "languagues-test.h"
+#include "languages-test.h"
 
 void testLanguageCreate(){
 	t_language* language = language_create();

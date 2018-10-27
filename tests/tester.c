@@ -1,6 +1,6 @@
 
 #include "alphabets-test.h"
-#include "languagues-test.h"
+#include "languages-test.h"
 void testBasico();
 
 int main(int argc, char** argv){

@@ -4,6 +4,7 @@
 
 #include "commons-includes.h"
 #include "alphabet.h"
+#include "element.h"
 
 typedef struct{
 	t_alphabet* alphabet;

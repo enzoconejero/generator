@@ -1,6 +1,6 @@
 
-#ifndef TESTS_LANGUAGUES_TEST_H_
-#define TESTS_LANGUAGUES_TEST_H_
+#ifndef TESTS_LANGUAGES_TEST_H_
+#define TESTS_LANGUAGES_TEST_H_
 
 #include <stdio.h>
 #include <stdbool.h>
