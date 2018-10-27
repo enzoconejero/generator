@@ -9,8 +9,10 @@ typedef struct{
 	t_alphabet* alphabet;
 }t_language;
 
+/*Create a languaje*/
 t_language* language_create();
-void languaje_destroy(t_language* languaje);
-void languaje_set_alphabet(t_language* languaje, t_alphabet* alphabet);
+void language_destroy(t_language* languaje);
+void language_set_alphabet(t_language* languaje, t_alphabet* alphabet);
+void generate();
 
 #endif /* LANGUAGE_H_ */

@@ -145,3 +145,9 @@ char* element_get_numbers(){
 	for(int i = 0; i < 10; elements[i] = '0' + i, i++);
 	return elements;
 }
+
+// char* element_get_numbers_int8(){
+// 	int8_t* elements = malloc(10);
+// 	for(int i = 0; i < 10; elements[i] = '0' + i, i++);
+// 	return elements;
+// }
