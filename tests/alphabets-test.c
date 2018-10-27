@@ -15,27 +15,6 @@
  * 10. Add mixed elements in no empty alphabet
  * */
 
-void testGetLowCasesElements(){
-	char* lowCases = element_get_lowCase();
-	for(char i = 0; i < LETTERS_COUNT; i++){
-		CU_ASSERT_EQUAL( lowCases[i] , 'a' + i );
-	}
-}
-
-void testGetUpCasesElements(){
-	char* upCases = element_get_upCase();
-	for(int i = 0; i < LETTERS_COUNT; i++){
-		CU_ASSERT_EQUAL( upCases[i] , 'A' + i );
-	}
-}
-
-void testGetNumbersElements(){
-	char* numbers = element_get_numbers();
-	for(int i = 0; i < 10; i++){
-		CU_ASSERT_EQUAL( numbers[i] , '0' + i);
-	}
-}
-
 void testAlphabetAlphaNumeric(){
 	t_alphabet* alphabet = alphabet_create();
 	alphabet_set_element(alphabet, element_get_lowCase(), LETTERS_COUNT, sizeof(char));

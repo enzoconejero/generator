@@ -1,17 +1,17 @@
 
 #include "alphabets-test.h"
 #include "languages-test.h"
-void testBasico();
+#include "elements-test.h"
 
 int main(int argc, char** argv){
 	CU_initialize_registry();
-	CU_pSuite prueba = CU_add_suite("Test suite", NULL, NULL);
-	CU_add_test(prueba, "Basic", testBasico);
+
+	CU_pSuite elements = CU_add_suite("Elements tests", NULL, NULL);
+	CU_add_test(elements, "Get lowCase elements", testGetLowCasesElements);
+	CU_add_test(elements, "Get upCase elements", testGetUpCasesElements);
+	CU_add_test(elements, "Get numbers elements", testGetNumbersElements);
 
 	CU_pSuite alphabets = CU_add_suite("Alphabets tests", NULL, NULL);
-	CU_add_test(alphabets, "Get lowCase elements", testGetLowCasesElements);
-	CU_add_test(alphabets, "Get upCase elements", testGetUpCasesElements);
-	CU_add_test(alphabets, "Get numbers elements", testGetNumbersElements);
 	CU_add_test(alphabets, "Char equals", testCharEqual);
 	CU_add_test(alphabets, "Int8 equals", testInt8Equal);
 	CU_add_test(alphabets, "Set equals", testSetEquals);
@@ -32,8 +32,4 @@ int main(int argc, char** argv){
 	CU_cleanup_registry();
 
 	return CU_get_error();
-}
-
-void testBasico(){
-	CU_ASSERT_EQUAL(1,1);
 }

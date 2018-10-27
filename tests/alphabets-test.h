@@ -12,9 +12,6 @@
 
 //#define LETTERS_COUNT ('z' - 'a' + 1)
 
-void testGetLowCasesElements();
-void testGetUpCasesElements();
-void testGetNumbersElements();
 void testCharEqual();
 void testInt8Equal();
 void testAlphabetCreate();
