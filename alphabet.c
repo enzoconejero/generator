@@ -125,26 +125,7 @@ bool equals_words_char(const char* c1,const char* c2){
 	return strcmp(c1, c2) == 0;
 }
 
-//Tested
-char* element_get_upCase(){
-	char* elements = malloc(LETTERS_COUNT);
-	for(int i = 0; i < LETTERS_COUNT; elements[i] = 'A' + i, i++);
-	return elements;
-}
 
-//Tested
-char* element_get_lowCase(){
-	char* elements = malloc(LETTERS_COUNT);
-	for(int i = 0; i < LETTERS_COUNT; elements[i] = 'a' + i, i++);
-	return elements;
-}
-
-//Tested
-char* element_get_numbers(){
-	char* elements = malloc(10);
-	for(int i = 0; i < 10; elements[i] = '0' + i, i++);
-	return elements;
-}
 
 // char* element_get_numbers_int8(){
 // 	int8_t* elements = malloc(10);

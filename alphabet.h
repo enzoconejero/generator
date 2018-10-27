@@ -31,15 +31,5 @@ void alphabet_set_equal(t_alphabet* alphabet, bool(*equal)(void*,void*));
 bool equals_char(void* c1, void* c2);
 bool equals_int8(void* c1, void* c2);
 
-/*Get chars A-Z*/
-char* element_get_upCase();
-
-/*Get chars a-z*/
-char* element_get_lowCase();
-
-/*Get chars 0-9*/
-char* element_get_numbers();
-
-
 #endif
 
