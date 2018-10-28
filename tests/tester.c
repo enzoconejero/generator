@@ -10,6 +10,10 @@ int main(int argc, char** argv){
 	CU_add_test(elements, "Get lowCase elements", testGetLowCasesElements);
 	CU_add_test(elements, "Get upCase elements", testGetUpCasesElements);
 	CU_add_test(elements, "Get numbers elements", testGetNumbersElements);
+	CU_add_test(elements, "Get num fails when Final < Intitial", testGetNumFailWhenFinalLessThanInitial);
+	CU_add_test(elements, "Get num fails when count > max", testGetNumFailWhenCountGreaterThanMax);
+	CU_add_test(elements, "Get num 0 to 100", testGetNumFrom0to100);
+
 
 	CU_pSuite alphabets = CU_add_suite("Alphabets tests", NULL, NULL);
 	CU_add_test(alphabets, "Char equals", testCharEqual);

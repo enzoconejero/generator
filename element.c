@@ -1,3 +1,4 @@
+
 #include "element.h"
 
 //Tested
@@ -21,16 +22,18 @@ char* element_get_numbers(){
 	return elements;
 }
 
+//To correct
 void* element_get_num(int64_t initial, int64_t final, t_int size){
-	
-	u_int64_t count = final - initial + 1;
-	double max_count;
-	int bytes;
-
+	printf("1\n");
 	if (final < initial){
 		//ERROR
 		return NULL;
 	}
+
+	u_int64_t count = final - initial + 1;
+	double max_count;
+	int bytes;
+	printf("1\n");
 
 	switch(size){
 	case UI8 :{
@@ -125,7 +128,8 @@ void* element_get_num(int64_t initial, int64_t final, t_int size){
 
 	case I8 :{
 		bytes = 1;
-		max_count = pow(2,bytes * 8);
+		max_count = pow(2, bytes * 8 - 1);
+		printf("MAX: %f\n", max_count);
 
 		if( count <= max_count && final <= max_count){
 			int8_t* elements = malloc( count * bytes);
@@ -147,7 +151,7 @@ void* element_get_num(int64_t initial, int64_t final, t_int size){
 
 	case I16 :{
 		bytes = 2;
-		max_count = pow(2,bytes * 8);
+		max_count = pow(2,bytes * 8 - 1);
 
 		if( count <= max_count && final <= max_count){
 			int16_t* elements = malloc( count * bytes );
@@ -169,7 +173,7 @@ void* element_get_num(int64_t initial, int64_t final, t_int size){
 
 	case I32 :{
 		bytes = 4;
-		max_count = pow(2,bytes * 8);
+		max_count = pow(2,bytes * 8 - 1);
 
 		if( count <= max_count && final <= max_count){
 			int32_t* elements = malloc( count * bytes );
@@ -191,7 +195,7 @@ void* element_get_num(int64_t initial, int64_t final, t_int size){
 
 	case I64 :{
 		bytes = 8;
-		max_count = pow(2,bytes * 8);
+		max_count = pow(2,bytes * 8 - 1);
 
 		if( count <= max_count && final <= max_count){
 			int64_t* elements = malloc( count * bytes );

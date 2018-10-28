@@ -12,6 +12,8 @@
 void testGetLowCasesElements();
 void testGetUpCasesElements();
 void testGetNumbersElements();
-void testGetNumFinalLessThanInitial();
+void testGetNumFailWhenFinalLessThanInitial();
+void testGetNumFailWhenCountGreaterThanMax();
+void testGetNumFrom0to100();
 
 #endif 
