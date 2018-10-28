@@ -23,200 +23,191 @@ char* element_get_numbers(){
 }
 
 //To correct
-void* element_get_num(int64_t initial, int64_t final, t_int size){
-	printf("1\n");
+void* element_get_num(double initial, double final, t_int size){
+	printf("\nFrom %.f to %.f\n", initial, final);
 	if (final < initial){
 		//ERROR
+		printf("Final less than initial\n");
+		return NULL;
+	}	
+
+	printf("Final greater than initial\n");
+
+	bool is_signed;
+
+	if(size >= UI8 && size <= UI64){
+		is_signed = false;
+		printf("Type is signed\n");
+	}
+
+	else if(size >= I8 && size <= I64){
+		is_signed = true;
+
+		printf("Type is unsigned\n");
+	}
+
+	else{
+		//ERROR
+		return NULL;	
+	}
+
+	u_int8_t bytes;
+
+	switch(size){
+	case UI8: case I8:
+		bytes = 1;
+		break;
+
+	case UI16: case I16:
+		bytes = 2;
+		break;
+
+	case UI32: case I32:
+		bytes = 4;
+		break;
+
+	case UI64: case I64:
+		bytes = 8;
+		break;
+
+	default:
+		return NULL;
+		break;
+	}
+
+	u_int8_t bits = bytes * 8;
+
+	printf("Type has %d bits\n", bits);
+
+	double max;
+	double min;
+
+	printf("1\n");
+	if(is_signed){
+		min = pow(2, -bits);
+		bits--;
+		max = pow(2, bits) - 1;
+	}
+
+	else{
+		min = 0;
+		max = pow(2, bits) - 1;
+	}
+
+	printf("Initial %.f\nMin:    %.f\n", initial, min);
+	printf("Final %.f\nMax:  %.f\n", final, max);			
+	if( (initial < min) || (final > max) ){
+		printf("Out of range\n");
 		return NULL;
 	}
 
-	u_int64_t count = final - initial + 1;
-	double max_count;
-	int bytes;
-	printf("1\n");
+	printf("15\n");
+
+	double count = final - initial + 1;
+
+	void* elements = malloc(bytes * count );
+
+	printf("20\n");
 
 	switch(size){
-	case UI8 :{
-		bytes = 1;
-		max_count = pow(2,bytes * 8);
+	case UI8:{
 
-		if( count <= max_count && final <= max_count ){
-			u_int8_t* elements = malloc(count * bytes);
+		u_int8_t num;
 
-			memset(elements, 0, count * bytes);
-
-			for (u_int8_t i = 0; i < count; ++i){
-				u_int8_t num = initial + i;
-				memcpy(elements + i * bytes, &num, bytes);
-			}
-
-			printf("Return u int 8 elements \n");
-			return elements;
+		for (double i = 0; i < count; i++){
+			num = (u_int8_t)i;
+			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
 		}
 
-		else{
-			//ERROR-OVERFLOW
-			return NULL;
-		}
-	}
+		break;
+	}//End of case
 
-	case UI16 :{
-		bytes = 2;
-		max_count = pow(2,bytes * 8);
+	case I8:{
 
-		if( count <= max_count && final <= max_count){
-			u_int16_t* elements = malloc(count * bytes);
+		int8_t num;
 
-			memset(elements, 0, count * bytes);
-
-			for (u_int16_t i = 0; i < count; ++i){
-				elements[i] = initial + i;
-			}
-
-			return elements;
+		for (double i = 0; i < count; i++){
+			num = (int8_t)i;
+			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
 		}
 
-		else{
-			//ERROR-OVERFLOW
-			return NULL;
-		}
-	}
+		break;
+	}//End of case
 
-	case UI32 :{
-		bytes = 4;
-		max_count = pow(2,bytes * 8);
+	case UI16:{
 
-		if( count <= max_count && final <= max_count){
-			u_int32_t* elements = malloc( count * bytes );
+		u_int64_t num;
 
-			memset(elements, 0, count * bytes);
-
-			for (u_int32_t i = 0; i < count; ++i){
-				elements[i] = initial + i;
-			}
-
-			return elements;
+		for (double i = 0; i < count; i++){
+			num = (u_int64_t)i;
+			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
 		}
 
-		else{
-			//ERROR-OVERFLOW
-			return NULL;
-		}
-	}
+		break;
+	}//End of case
 
-	case UI64 :{
-		bytes = 8;
-		max_count = pow(2,bytes * 8);
+	case I16:{
 
-		if( count <= max_count && final <= max_count){
-			u_int64_t* elements = malloc( count * bytes );
+		int16_t num;
 
-			memset(elements, 0, count * bytes);
-
-			for (u_int64_t i = 0; i < count; ++i){
-				elements[i] = initial + i;
-			}
-
-			return elements;
+		for (double i = 0; i < count; i++){
+			num = (int16_t)i;
+			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
 		}
 
-		else{
-			//ERROR-OVERFLOW
-			return NULL;
-		}
-	}
+		break;
+	}//End of case
 
-	case I8 :{
-		bytes = 1;
-		max_count = pow(2, bytes * 8 - 1);
-		printf("MAX: %f\n", max_count);
+	case UI32:{
 
-		if( count <= max_count && final <= max_count){
-			int8_t* elements = malloc( count * bytes);
+		u_int32_t num;
 
-			memset(elements, 0, count * bytes);
-
-			for (int8_t i = 0; i < count; ++i){
-				elements[i] = initial + i;
-			}
-
-			return elements;
+		for (double i = 0; i < count; i++){
+			num = (u_int32_t)i;
+			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
 		}
 
-		else{
-			//ERROR-OVERFLOW
-			return NULL;
-		}
-	}
+		break;
+	}//End of case
 
-	case I16 :{
-		bytes = 2;
-		max_count = pow(2,bytes * 8 - 1);
+	case I32:{
 
-		if( count <= max_count && final <= max_count){
-			int16_t* elements = malloc( count * bytes );
+		int32_t num;
 
-			memset(elements, 0, count * bytes);
-
-			for (int16_t i = 0; i < count; ++i){
-				elements[i] = initial + i;
-			}
-
-			return elements;
+		for (double i = 0; i < count; i++){
+			num = (int32_t)i;
+			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
 		}
 
-		else{
-			//ERROR-OVERFLOW
-			return NULL;
-		}
-	}
+		break;
+	}//End of case
 
-	case I32 :{
-		bytes = 4;
-		max_count = pow(2,bytes * 8 - 1);
+	case UI64:{
+		printf("30\n");
+		u_int64_t num;
 
-		if( count <= max_count && final <= max_count){
-			int32_t* elements = malloc( count * bytes );
-
-			memset(elements, 0, count * bytes);
-
-			for (int32_t i = 0; i < count; ++i){
-				elements[i] = initial + i;
-			}
-
-			return elements;
+		for (double i = 0; i < count; i++){
+			// printf("%.f\n", 50+i);
+			num = (u_int64_t)i;
+			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
 		}
 
-		else{
-			//ERROR-OVERFLOW
-			return NULL;
-		}
-	}
+		break;
+	}//End of case
 
-	case I64 :{
-		bytes = 8;
-		max_count = pow(2,bytes * 8 - 1);
+	case I64:{
 
-		if( count <= max_count && final <= max_count){
-			int64_t* elements = malloc( count * bytes );
+		int64_t num;
 
-			memset(elements, 0, count * bytes);
-
-			for (int64_t i = 0; i < count; ++i){
-				elements[i] = initial + i;
-			}
-
-			return elements;
+		for (double i = 0; i < count; i++){
+			num = (int64_t)i;
+			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
 		}
 
-		else{
-			//ERROR-OVERFLOW
-			return NULL;
-		}
-	}
+		break;
+	}//End of case
 
 	default:
-		printf("There are not a valid size\n");
 		return NULL;
 		break;
 	}

@@ -49,31 +49,45 @@ void testGetNumFailWhenFinalLessThanInitial(){
 }
 
 void testGetNumFailWhenCountGreaterThanMax(){
-	void* elements = element_get_num(0, 500, UI8);
+	void* elements = element_get_num(0, pow(2,8), UI8);
 	CU_ASSERT_PTR_NULL(elements);
 
-	elements = element_get_num(0, 9223372036854775807, UI16);
+	elements = element_get_num(0, pow(2,16), UI16);
 	CU_ASSERT_PTR_NULL(elements);
 
-	elements = element_get_num(0, 9223372036854775807, UI32);
+	elements = element_get_num(0, pow(2,32), UI32);
 	CU_ASSERT_PTR_NULL(elements);
 
-	elements = element_get_num(0, 9223372036854775807, UI64);
-	CU_ASSERT_PTR_NULL(elements);
-
-	// elements = element_get_num(0, 9223372036854775807, I8);
+	// elements = element_get_num(0, pow(2,64) + 1, UI64);
 	// CU_ASSERT_PTR_NULL(elements);
 
-	// elements = element_get_num(0, 9223372036854775807, I16);
-	// CU_ASSERT_PTR_NULL(elements);
+	elements = element_get_num(0, pow(2,8), I8);
+	CU_ASSERT_PTR_NULL(elements);
 
-	// elements = element_get_num(0, 9223372036854775807, I32);
-	// CU_ASSERT_PTR_NULL(elements);
+	elements = element_get_num(0, pow(2,16), I16);
+	CU_ASSERT_PTR_NULL(elements);
+
+	elements = element_get_num(0, pow(2,32), I32);
+	CU_ASSERT_PTR_NULL(elements);
 
 	// elements = element_get_num(0, 9223372036854775807, I64);
 	// CU_ASSERT_PTR_NULL(elements);
 }
  
+void testGetNumFailWhenInitialIsNegativeAtUnsignedType(){
+	void* elements = element_get_num(-1, 1, UI8);
+	CU_ASSERT_PTR_NULL(elements);
+
+	elements = element_get_num(-1, 1, UI16);
+	CU_ASSERT_PTR_NULL(elements);
+
+	elements = element_get_num(-1, 1, UI32);
+	CU_ASSERT_PTR_NULL(elements);
+
+	elements = element_get_num(-1, 1, UI64);
+	CU_ASSERT_PTR_NULL(elements);
+}
+
 void testGetNumFrom0to100(){
 	void* elements = element_get_num(0, 100, UI8);
 

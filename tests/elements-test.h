@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
+#include <math.h>
 #include "../element.h"
 
 void testGetLowCasesElements();
@@ -14,6 +15,7 @@ void testGetUpCasesElements();
 void testGetNumbersElements();
 void testGetNumFailWhenFinalLessThanInitial();
 void testGetNumFailWhenCountGreaterThanMax();
+void testGetNumFailWhenInitialIsNegativeAtUnsignedType();
 void testGetNumFrom0to100();
 
 #endif 

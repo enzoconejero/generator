@@ -24,6 +24,6 @@ char* element_get_lowCase();
 /*Get chars 0-9*/
 char* element_get_numbers();
 
-void* element_get_num(int64_t initial, int64_t final, t_int size);
+void* element_get_num(double initial, double final, t_int size);
 
 #endif
