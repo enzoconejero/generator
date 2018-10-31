@@ -23,94 +23,99 @@ void language_set_alphabet(t_language* language, t_alphabet* alphabet){
 }
 
 void generate(t_language* language){
-	int lenght_max = 5; //Hardcoded;
+	int lenght_max = 4; //Hardcoded;
+
+	//Inicializations
+	void* elements = language->alphabet->elements;
+	void* last_element = language->alphabet->last_element;
+	size_t size = language->alphabet->elements_size;
+	size_t count = language->alphabet->elements_count;
+	bool equals(void* a,void* b){
+		(*(language->alphabet->equals))(a,b);
+	};
+
 	int length_current = 1;
-
-	void* word = malloc(language->alphabet->elements_size);
-
+	void* word = malloc(size);
 	int* indexes = malloc(length_current * sizeof(int));
-
-	for (int i = 0; i < length_current; ++i){
-		indexes[i] = 0;
-	}
+	for (int i = 0; i < length_current; indexes[i] = 0, ++i);
 	
 	while(length_current < lenght_max){
-		printf("Lenght: %d\n", length_current);
-		for(int i = 0; i < language->alphabet->elements_count; i++){
 
-			memcpy(word + (length_current-1) * language->alphabet->elements_size,
-					language->alphabet->elements + i * language->alphabet->elements_size,
-					language->alphabet->elements_size);
+		// printf("Lenght: %d\n", length_current); //debug
 
-			for (int i = 0; i < length_current; ++i){
-				printf("%d\t", *(int8_t*)(word + i * language->alphabet->elements_size) );
-			}
-			// printf("\t");
-			getchar();//Only for tests
+		for(int i = 0; i < count; i++){
+
+			memcpy(word + (length_current-1) * size,
+					elements+ i * size,
+					size);
+
+			// for (int i = 0; i < length_current; ++i){
+			// 	printf("%d\t", *(int8_t*)(word + i * language->alphabet->elements_size) );
+			// }
 		}
-		
-		printf("\n");
 
 		//Check if is the max word
 		bool is_element_to_change = true;
 		int elements_to_change = 0;
 
 		for (int i = 0; i < length_current && is_element_to_change; ++i){
-			is_element_to_change = (*(language->alphabet->equals)) 
-				(word + (length_current - 1 - i ) * language->alphabet->elements_size,
-				language->alphabet->last_element);
+
+			is_element_to_change = equals(word + (length_current - 1 - i ) * size, last_element);
 
 			if(is_element_to_change){
 				elements_to_change++;
 			}
 		}
 
-		printf("%d elements to change of %d\n", elements_to_change, length_current);
+		// printf("%d elements to change of %d\n", elements_to_change, length_current);
 
 		if (elements_to_change == length_current){
-			printf("Is the last word whith %d lenght\n", length_current);
+			printf("Is the last word with %d lenght\n", length_current);
 			length_current++;
 			word = malloc(length_current);
 
 			indexes = malloc(length_current * sizeof(int));
 
 			for (int i = 0; i < length_current; ++i){
-				memcpy(word + i * language->alphabet->elements_size,
-					language->alphabet->elements,
-					language->alphabet->elements_size);
+				memcpy(word + i * size,
+					elements,
+					size);
 
 				indexes[i] = 0;
 			}
 		}
 
 		else{
-			
+
+			//debug
 			printf("Indexes:");
 			for (int i = 0; i < length_current; ++i){
 				printf("\t%d", indexes[i]);		
 			}
-
 			printf("\n");
-			printf("There are %d to change of %d\n", elements_to_change, length_current);
+			// debug
+
+			printf("There are %d to change of %d\n", elements_to_change, length_current);//debug
 
 			//Replace the elements which are equals to last_element
 			for (int i = 0; i < elements_to_change; ++i){
-				memcpy(word + (length_current - 1 - i) * language->alphabet->elements_size,
-					language->alphabet->elements,
-					language->alphabet->elements_size);
+				memcpy(word + (length_current - 1 - i) * size,
+					elements,
+					size);
 				indexes[length_current - 1 - i] = 0;
 			}
 
 			//element++
 			printf("Change element at index %d by %d\n",
 				length_current - elements_to_change - 1,
-				*(int8_t*)(language->alphabet->elements + (indexes[length_current - elements_to_change - 1] + 1) * language->alphabet->elements_size));
+				*(int8_t*)(elements+ (indexes[length_current - elements_to_change - 1] + 1) * size));
 
-			memcpy(word + (length_current - elements_to_change - 1) * language->alphabet->elements_size,
-				language->alphabet->elements + (indexes[length_current - elements_to_change - 1] + 1) * language->alphabet->elements_size,
-				language->alphabet->elements_size);
+			memcpy(word + (length_current - elements_to_change - 1) * size,
+				elements+ (indexes[length_current - elements_to_change - 1] + 1) * size,
+				size);
 
 			indexes[length_current - elements_to_change - 1] += 1;
+			getchar();
 		}
 	}
 }
