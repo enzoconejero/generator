@@ -124,11 +124,3 @@ bool equals_int8(void* c1, void* c2){
 bool equals_words_char(const char* c1,const char* c2){
 	return strcmp(c1, c2) == 0;
 }
-
-
-
-// char* element_get_numbers_int8(){
-// 	int8_t* elements = malloc(10);
-// 	for(int i = 0; i < 10; elements[i] = '0' + i, i++);
-// 	return elements;
-// }

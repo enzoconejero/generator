@@ -25,14 +25,15 @@ void language_set_alphabet(t_language* language, t_alphabet* alphabet){
 void generate(t_language* language){
 	int lenght_max = 5; //Hardcoded;
 	int length_current = 1;
-	void* word = malloc(language->alphabet->elements_size);
-	int* indexes = malloc(lenght_max * sizeof(int));
 
-	for (int i = 0; i < lenght_max; ++i){
+	void* word = malloc(language->alphabet->elements_size);
+
+	int* indexes = malloc(length_current * sizeof(int));
+
+	for (int i = 0; i < length_current; ++i){
 		indexes[i] = 0;
 	}
 	
-
 	while(length_current < lenght_max){
 		printf("Lenght: %d\n", length_current);
 		for(int i = 0; i < language->alphabet->elements_count; i++){
@@ -44,7 +45,8 @@ void generate(t_language* language){
 			for (int i = 0; i < length_current; ++i){
 				printf("%d\t", *(int8_t*)(word + i * language->alphabet->elements_size) );
 			}
-			getchar();
+			// printf("\t");
+			getchar();//Only for tests
 		}
 		
 		printf("\n");
@@ -63,108 +65,52 @@ void generate(t_language* language){
 			}
 		}
 
-
-
 		printf("%d elements to change of %d\n", elements_to_change, length_current);
 
 		if (elements_to_change == length_current){
 			printf("Is the last word whith %d lenght\n", length_current);
 			length_current++;
 			word = malloc(length_current);
+
+			indexes = malloc(length_current * sizeof(int));
+
 			for (int i = 0; i < length_current; ++i){
 				memcpy(word + i * language->alphabet->elements_size,
 					language->alphabet->elements,
 					language->alphabet->elements_size);
+
 				indexes[i] = 0;
 			}
 		}
 
 		else{
+			
 			printf("Indexes:");
-			for (int i = 0; i < lenght_max; ++i){
+			for (int i = 0; i < length_current; ++i){
 				printf("\t%d", indexes[i]);		
 			}
-			printf("\n");
 
+			printf("\n");
 			printf("There are %d to change of %d\n", elements_to_change, length_current);
-			//Last element to initial
-			// memcpy(word + (length_current - 1) * language->alphabet->elements_size,
-			// 	language->alphabet->elements,
-			// 	language->alphabet->elements_size);
 
 			//Replace the elements which are equals to last_element
 			for (int i = 0; i < elements_to_change; ++i){
 				memcpy(word + (length_current - 1 - i) * language->alphabet->elements_size,
 					language->alphabet->elements,
 					language->alphabet->elements_size);
-				indexes[i] = 0;
+				indexes[length_current - 1 - i] = 0;
 			}
 
 			//element++
 			printf("Change element at index %d by %d\n",
 				length_current - elements_to_change - 1,
 				*(int8_t*)(language->alphabet->elements + (indexes[length_current - elements_to_change - 1] + 1) * language->alphabet->elements_size));
+
 			memcpy(word + (length_current - elements_to_change - 1) * language->alphabet->elements_size,
-				language->alphabet->elements + (indexes[lenght_max - elements_to_change - 1] + 1) * language->alphabet->elements_size,
+				language->alphabet->elements + (indexes[length_current - elements_to_change - 1] + 1) * language->alphabet->elements_size,
 				language->alphabet->elements_size);
 
-			indexes[lenght_max - elements_to_change - 1] += 1;
+			indexes[length_current - elements_to_change - 1] += 1;
 		}
 	}
 }
-
-//	char* last = malloc(alphabet->elements_size);
-//	size_t largo = 1;
-//	int8_t index0;
-//	int8_t index1;
-//	while(largo<3){
-//
-//		for(int a = 0; a < alphabet->elements_count; a++){
-//
-//			printf("%c ||\t", *(char*)(alphabet->elements + a));
-//			memcpy(last + (largo - 1)*alphabet->elements_size,
-//					alphabet->elements + a * alphabet->elements_size,
-//					alphabet->elements_size);
-//
-//			//*(last + (largo+1) * alphabet->elements_size) = '\0';
-//
-//			//printf("%s\n", last);
-//
-//			for(int c = 0; c < largo; c++){
-//				printf("%c ", *(last+c));
-//			}
-//			printf("\n");
-//
-//			getchar();
-//		}
-//
-//		//Chequear si es la ultima palabra con ese largo
-//		bool ultima = true;
-//
-//		for(int i = 0; i < largo && ultima; i++){
-//			ultima = (*(alphabet->equals))(last + i*alphabet->elements_size, alphabet->last_element);
-//		}
-//
-//		if(ultima){
-//			largo ++;
-//			printf("Ultima\tLargo %d\n", largo);
-//			last = malloc(largo * alphabet->elements_size);
-//			for(int j = 0; j < largo; j++){
-//				memcpy(last + j*alphabet->elements_size, alphabet->elements, alphabet->elements_size );
-//			}
-//
-//			for(int c = 0; c < largo; c++){
-//				printf("%c ", *(last+c));
-//			}
-//
-//		}
-//
-//		else{
-//			printf("Cambia letras\n");
-//
-//			if(  ){
-//
-//			}
-//
-//		}
-//	}

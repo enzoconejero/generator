@@ -32,4 +32,3 @@ bool equals_char(void* c1, void* c2);
 bool equals_int8(void* c1, void* c2);
 
 #endif
-
