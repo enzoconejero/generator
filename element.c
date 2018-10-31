@@ -22,28 +22,28 @@ char* element_get_numbers(){
 	return elements;
 }
 
-//To correct
+//Semi - tested
 void* element_get_num(double initial, double final, t_int size){
-	printf("\nFrom %.f to %.f\n", initial, final);
+	// printf("\nFrom %.f telement_get_numo %.f\n", initial, final);
 	if (final < initial){
 		//ERROR
-		printf("Final less than initial\n");
+		// printf("Final less than initial\n");
 		return NULL;
 	}	
 
-	printf("Final greater than initial\n");
+	// printf("Final greater than initial\n");
 
 	bool is_signed;
 
 	if(size >= UI8 && size <= UI64){
 		is_signed = false;
-		printf("Type is signed\n");
+		// printf("Type is signed\n");
 	}
 
 	else if(size >= I8 && size <= I64){
 		is_signed = true;
 
-		printf("Type is unsigned\n");
+		// printf("Type is unsigned\n");
 	}
 
 	else{
@@ -66,18 +66,15 @@ void* element_get_num(double initial, double final, t_int size){
 		bytes = 4;
 		break;
 
-	case UI64: case I64:
-		bytes = 8;
-		break;
-
 	default:
+		//ERROR
 		return NULL;
 		break;
 	}
 
 	u_int8_t bits = bytes * 8;
 
-	printf("Type has %d bits\n", bits);
+	// printf("Type has %d bits\n", bits);
 
 	double max;
 	double min;
@@ -94,121 +91,47 @@ void* element_get_num(double initial, double final, t_int size){
 		max = pow(2, bits) - 1;
 	}
 
-	printf("Initial %.f\nMin:    %.f\n", initial, min);
-	printf("Final %.f\nMax:  %.f\n", final, max);			
+	// printf("Initial %.f\nMin:    %.f\n", initial, min);
+	// printf("Final %.f\nMax:  %.f\n", final, max);			
 	if( (initial < min) || (final > max) ){
-		printf("Out of range\n");
+		// printf("Out of range\n");
+		//ERROR
 		return NULL;
 	}
 
-	printf("15\n");
-
 	double count = final - initial + 1;
 
-	void* elements = malloc(bytes * count );
-
-	printf("20\n");
+	void* elements = malloc(bytes * count);
 
 	switch(size){
-	case UI8:{
-
-		u_int8_t num;
-
-		for (double i = 0; i < count; i++){
-			num = (u_int8_t)i;
-			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
-		}
-
+	case UI8:
+		for (u_int8_t i = 0; i < count; ((u_int8_t*)elements) [i] = (u_int8_t)initial + i, ++i);
 		break;
-	}//End of case
 
-	case I8:{
-
-		int8_t num;
-
-		for (double i = 0; i < count; i++){
-			num = (int8_t)i;
-			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
-		}
-
+	case I8:
+		for (int8_t i = 0; i < count; ((int8_t*)elements) [i] = (int8_t)initial + i, ++i);
 		break;
-	}//End of case
 
-	case UI16:{
-
-		u_int64_t num;
-
-		for (double i = 0; i < count; i++){
-			num = (u_int64_t)i;
-			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
-		}
-
+	case UI16:
+		for (u_int16_t i = 0; i < count; ((u_int16_t*)elements) [i] = (u_int16_t)initial + i, ++i);
 		break;
-	}//End of case
 
-	case I16:{
-
-		int16_t num;
-
-		for (double i = 0; i < count; i++){
-			num = (int16_t)i;
-			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
-		}
-
+	case I16:
+		for (int16_t i = 0; i < count; ((int16_t*)elements) [i] = (int16_t)initial + i, ++i);
 		break;
-	}//End of case
 
-	case UI32:{
-
-		u_int32_t num;
-
-		for (double i = 0; i < count; i++){
-			num = (u_int32_t)i;
-			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
-		}
-
+	case UI32:
+		for (u_int32_t i = 0; i < count; ((u_int32_t*)elements) [i] = (u_int32_t)initial + i, ++i);
 		break;
-	}//End of case
 
-	case I32:{
-
-		int32_t num;
-
-		for (double i = 0; i < count; i++){
-			num = (int32_t)i;
-			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
-		}
-
+	case I32:
+		for (int32_t i = 0; i < count; ((int32_t*)elements) [i] = (int32_t)initial + i, ++i);
 		break;
-	}//End of case
-
-	case UI64:{
-		printf("30\n");
-		u_int64_t num;
-
-		for (double i = 0; i < count; i++){
-			// printf("%.f\n", 50+i);
-			num = (u_int64_t)i;
-			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
-		}
-
-		break;
-	}//End of case
-
-	case I64:{
-
-		int64_t num;
-
-		for (double i = 0; i < count; i++){
-			num = (int64_t)i;
-			memcpy(elements + (u_int64_t)i * bytes, &num, bytes);
-		}
-
-		break;
-	}//End of case
 
 	default:
 		return NULL;
 		break;
 	}
+
+	return elements;
 }

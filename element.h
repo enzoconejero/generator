@@ -24,6 +24,7 @@ char* element_get_lowCase();
 /*Get chars 0-9*/
 char* element_get_numbers();
 
+/*Get numbers on the designed interval*/
 void* element_get_num(double initial, double final, t_int size);
 
 #endif

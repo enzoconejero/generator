@@ -17,5 +17,6 @@ void testGetNumFailWhenFinalLessThanInitial();
 void testGetNumFailWhenCountGreaterThanMax();
 void testGetNumFailWhenInitialIsNegativeAtUnsignedType();
 void testGetNumFrom0to100();
+void testGetNumForAlTheTypes();
 
 #endif 
