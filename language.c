@@ -5,6 +5,7 @@
 t_language* language_create(){
 	t_language* language = (t_language*) malloc(sizeof(t_language));
 	language->alphabet = NULL;
+	language->print = NULL;
 	return language;
 }
 
@@ -22,6 +23,13 @@ void language_set_alphabet(t_language* language, t_alphabet* alphabet){
 	language->alphabet = alphabet;
 }
 
+void language_set_print(t_language* language, void (*print)(void* a)){
+	if(language->print != NULL){
+		free(language->print);
+	}
+	language->print = print;
+}
+
 void generate(t_language* language){
 	int lenght_max = 4; //Hardcoded;
 
@@ -30,9 +38,14 @@ void generate(t_language* language){
 	void* last_element = language->alphabet->last_element;
 	size_t size = language->alphabet->elements_size;
 	size_t count = language->alphabet->elements_count;
+
 	bool equals(void* a,void* b){
 		(*(language->alphabet->equals))(a,b);
 	};
+
+	void print(void* a){
+		(*(language->print)) (a);
+	}
 
 	int length_current = 1;
 	void* word = malloc(size);
@@ -42,18 +55,18 @@ void generate(t_language* language){
 	while(length_current < lenght_max){
 
 		// printf("Lenght: %d\n", length_current); //debug
-
 		for(int i = 0; i < count; i++){
-
 			memcpy(word + (length_current-1) * size,
-					elements+ i * size,
+					elements + i * size,
 					size);
 
-			// for (int i = 0; i < length_current; ++i){
-			// 	printf("%d\t", *(int8_t*)(word + i * language->alphabet->elements_size) );
-			// }
+			for (int i = 0; i < length_current; ++i){
+				print(word + i);
+				printf("\t");
+			}
+			printf("\n");
 		}
-
+		
 		//Check if is the max word
 		bool is_element_to_change = true;
 		int elements_to_change = 0;
@@ -72,8 +85,11 @@ void generate(t_language* language){
 		if (elements_to_change == length_current){
 			printf("Is the last word with %d lenght\n", length_current);
 			length_current++;
-			word = malloc(length_current);
 
+			free(word);
+			free(indexes);
+
+			word = malloc(length_current);
 			indexes = malloc(length_current * sizeof(int));
 
 			for (int i = 0; i < length_current; ++i){
@@ -95,7 +111,7 @@ void generate(t_language* language){
 			printf("\n");
 			// debug
 
-			printf("There are %d to change of %d\n", elements_to_change, length_current);//debug
+			// printf("There are %d to change of %d\n", elements_to_change, length_current);//debug
 
 			//Replace the elements which are equals to last_element
 			for (int i = 0; i < elements_to_change; ++i){

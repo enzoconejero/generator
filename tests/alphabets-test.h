@@ -22,5 +22,6 @@ void testSetRepeatedElementsInNoEmptyAlphabet();
 void testAddElementsInEmptyAlphabet();
 void testAddElementsInNotEmptyAlphabet();
 void testAddRepeatedElementsInNotEmptyAlphabet();
+void testGetElementAtIndex();
 
 #endif /* TESTS_ALPHABETS_TEST_H_ */

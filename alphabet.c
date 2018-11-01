@@ -110,6 +110,15 @@ void alphabet_set_equal(t_alphabet* alphabet, bool(*equal)(void*,void*)){
 	alphabet->equals = equal;
 }
 
+void* alphabet_get_element_at(t_alphabet* alphabet, int index){
+	void* element = malloc(alphabet->elements_size);
+	memcpy( element,
+		alphabet->elements + index * alphabet->elements_size,
+		alphabet->elements_size);
+
+	return element;
+}
+
 //Tested
 bool equals_char(void* c1, void* c2){
 	return *((char*) c1) == *((char*) c2);

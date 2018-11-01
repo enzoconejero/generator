@@ -27,6 +27,7 @@ int main(int argc, char** argv){
 	CU_add_test(alphabets, "Add elements in empty alphabet", testAddElementsInEmptyAlphabet);
 	CU_add_test(alphabets, "Add elements in not empty alphabet", testAddElementsInNotEmptyAlphabet);
 	CU_add_test(alphabets, "Add repeated elements in not empty alphabet", testAddRepeatedElementsInNotEmptyAlphabet);
+	CU_add_test(alphabets, "Get element at index", testGetElementAtIndex);
 
 	CU_pSuite languages = CU_add_suite("Languages tests", NULL, NULL);
 	CU_add_test(languages, "Constructor", testLanguageCreate);

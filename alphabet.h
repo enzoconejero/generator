@@ -28,6 +28,8 @@ void alphabet_add_element(t_alphabet* alphabet, void* elements, size_t elements_
 /*Set function which returns if 2 elements are equals*/
 void alphabet_set_equal(t_alphabet* alphabet, bool(*equal)(void*,void*));
 
+void* alphabet_get_element_at(t_alphabet* alphabet, int index);
+
 bool equals_char(void* c1, void* c2);
 bool equals_int8(void* c1, void* c2);
 

@@ -243,3 +243,13 @@ void testAddRepeatedElementsInNotEmptyAlphabet(){
 
 	alphabet_destroy(alphabet);
 }
+
+void testGetElementAtIndex(){
+	t_alphabet* alphabet = alphabet_create();
+	alphabet_set_equal(alphabet,&equals_char);	
+	alphabet_set_element(alphabet, element_get_lowCase(), LETTERS_COUNT, sizeof(char));
+
+	for (int i = 0; i < LETTERS_COUNT; ++i){
+		CU_ASSERT_EQUAL( *(char*) alphabet_get_element_at(alphabet, i), 'a' + i);
+	}
+}
