@@ -79,7 +79,6 @@ void* element_get_num(double initial, double final, t_int size){
 	double max;
 	double min;
 
-	printf("1\n");
 	if(is_signed){
 		min = pow(2, -bits);
 		bits--;

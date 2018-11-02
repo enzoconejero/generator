@@ -3,7 +3,6 @@
 #define GENERATOR_H_
 
 #include "commons-includes.h"
-#include "alphabet.h"
 #include "language.h"
 #include "element.h"
 #include "print.h"
