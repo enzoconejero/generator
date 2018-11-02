@@ -17,8 +17,6 @@ t_language* language_create(){
 void language_destroy(t_language* language){
 	free(language->elements);
 	free(language->last_element);
-	free(language->equals);
-	free(language->print);
 	free(language);
 }
 
@@ -140,8 +138,6 @@ bool equals_int8(void* c1, void* c2){
 bool equals_words_char(const char* c1,const char* c2){
 	return strcmp(c1, c2) == 0;
 }
-
-
 
 void generate(t_language* language){
 	int lenght_max = 4; //Hardcoded;

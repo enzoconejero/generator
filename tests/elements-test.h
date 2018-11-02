@@ -3,6 +3,8 @@
 #define ELEMENTS_TEST_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <stdbool.h>
 #include <CUnit/Basic.h>
