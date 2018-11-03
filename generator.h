@@ -6,6 +6,7 @@
 #include "language.h"
 #include "element.h"
 #include "print.h"
+#include "equal.h"
 
 
 #endif /* GENERATOR_H_ */

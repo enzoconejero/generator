@@ -14,8 +14,6 @@
 
 //#define LETTERS_COUNT ('z' - 'a' + 1)
 
-void testCharEqual();
-void testInt8Equal();
 void testLanguageCreate();
 void testSetEquals();
 void testSetElementsInEmptyLanguage();

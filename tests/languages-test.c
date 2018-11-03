@@ -1,20 +1,6 @@
 
 #include "languages-test.h"
 
-/*Test order:
- * 1. Get elements -- ok
- * 2. Equal
- * 3. Create language
- * 4  Filter repeated elements
- * 4. Set elements in empty language
- * 5. Create language
- * 6. Set elements in no empty language
- * 7. Add elements in empty language
- * 8. Add new elements in empty language
- * 9. Add repeated elements in no empty language
- * 10. Add mixed elements in no empty language
- * */
-
 void testLanguageAlphaNumeric(){
 	t_language* language = language_create();
 	language_set_element(language, element_get_lowCase(), LETTERS_COUNT, sizeof(char));
@@ -32,20 +18,6 @@ void testLanguageAlphaNumeric(){
 	for(char i = 0; i < 10; i++){
 		CU_ASSERT_EQUAL( ((char*)language->elements)[i+LETTERS_COUNT*2] , '0' + i );
 	}
-}
-
-void testCharEqual(){
-	char a, b;
-	a = 'a';
-	b = 'a';
-	CU_ASSERT_TRUE(equals_char( &a, &b) );
-}
-
-void testInt8Equal(){
-	int8_t a, b;
-	a = 1;
-	b = 1;
-	CU_ASSERT_TRUE(equals_int8( &a, &b) );
 }
 
 void testSetEquals(){

@@ -4,6 +4,7 @@
 
 #include "commons-includes.h"
 #include "element.h"
+#include "equal.h"
 
 typedef struct{
 	size_t elements_count;
@@ -29,9 +30,6 @@ void language_add_element(t_language* language, void* elements, size_t elements_
 void language_set_equal(t_language* language, bool(*equal)(void*,void*));
 
 void* language_get_element_at(t_language* language, int index);
-
-bool equals_char(void* c1, void* c2);
-bool equals_int8(void* c1, void* c2);
 
 void generate();
 

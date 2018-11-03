@@ -1,6 +1,7 @@
 
 #include "languages-test.h"
 #include "elements-test.h"
+#include "equals-test.h"
 
 int main(int argc, char** argv){
 	CU_initialize_registry();
@@ -15,9 +16,17 @@ int main(int argc, char** argv){
 	CU_add_test(elements, "Get num 0 to 100", testGetNumFrom0to100);
 	CU_add_test(elements, "Get num for all the types", testGetNumForAlTheTypes);
 
+	CU_pSuite equals = CU_add_suite("Languages tests", NULL, NULL);
+	CU_add_test(equals, "Char equals", testChar);
+	CU_add_test(equals, "Int8 equals", testInt8);
+	CU_add_test(equals, "Int16 equals", testInt16);
+	CU_add_test(equals, "Int32 equals", testInt32);
+	CU_add_test(equals, "Intu8 equals", testuInt8);
+	CU_add_test(equals, "Intu16 equals", testuInt16);
+	CU_add_test(equals, "Intu32 equals", testuInt32);
+	CU_add_test(equals, "Double equals", testDouble);
+
 	CU_pSuite languages = CU_add_suite("Languages tests", NULL, NULL);
-	CU_add_test(languages, "Char equals", testCharEqual);
-	CU_add_test(languages, "Int8 equals", testInt8Equal);
 	CU_add_test(languages, "Set equals", testSetEquals);
 	CU_add_test(languages, "Constructor", testLanguageCreate);
 	CU_add_test(languages, "Set elements in empty language", testSetElementsInEmptyLanguage);
@@ -35,3 +44,7 @@ int main(int argc, char** argv){
 
 	return CU_get_error();
 }
+
+
+
+

@@ -20,6 +20,7 @@ void language_destroy(t_language* language){
 	free(language);
 }
 
+//Tested
 void language_set_print(t_language* language, void (*print)(void* a)){
 	if(language->print != NULL){
 		free(language->print);
@@ -27,6 +28,7 @@ void language_set_print(t_language* language, void (*print)(void* a)){
 	language->print = print;
 }
 
+//Tested
 void language_set_element(t_language* language, void* elements, size_t elements_count, size_t elements_size){
 	if(language->elements != NULL){
 		free(language->elements);
@@ -122,21 +124,6 @@ void* language_get_element_at(t_language* language, int index){
 		language->elements_size);
 
 	return element;
-}
-
-//Tested
-bool equals_char(void* c1, void* c2){
-	return *((char*) c1) == *((char*) c2);
-}
-
-//Tested
-bool equals_int8(void* c1, void* c2){
-	return (*((int8_t*) c1)) == (*((int8_t*) c2));
-}
-
-//Tested
-bool equals_words_char(const char* c1,const char* c2){
-	return strcmp(c1, c2) == 0;
 }
 
 void generate(t_language* language){
@@ -244,3 +231,4 @@ void generate(t_language* language){
 		}
 	}
 }
+
