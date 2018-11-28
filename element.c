@@ -133,3 +133,49 @@ void* element_get_num(double initial, double final, t_int size){
 
 	return elements;
 }
+
+char* element_get_punctuation_marks(){
+	char* elements = malloc(13);
+	elements[0] = '.';
+	elements[1] = ',';
+	elements[2] = ';';
+	elements[3] = ':';
+	elements[4] = '-';
+	elements[5] = '(';
+	elements[6] = ')';
+	elements[7] = '!';
+	elements[8] = '?';
+	elements[9] = '\'';
+	elements[10] = '>';
+	elements[11] = '<';
+	elements[12] = '"';
+	return elements;
+}
+
+char* element_get_c_special(){
+	char* elements = malloc(23);
+	elements[0] = '.';
+	elements[1] = ',';
+	elements[2] = ';';
+	elements[3] = ':';
+	elements[4] = '"';
+	elements[5] = '\'';
+	elements[6] = '\\';
+	elements[7] = '_';
+	elements[8] = '!';
+	elements[9] = '?';
+	elements[10] = '&';
+	elements[11] = '|';
+	elements[12] = '+';
+	elements[13] = '-';
+	elements[14] = '*';
+	elements[15] = '=';
+	elements[16] = '/';
+	elements[17] = '(';
+	elements[18] = ')';
+	elements[19] = '[';
+	elements[20] = ']';
+	elements[21] = '{';
+	elements[22] = '}';
+	return elements;
+}

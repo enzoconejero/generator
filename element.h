@@ -28,4 +28,10 @@ char* element_get_numbers();
 /*Get numbers on the designed interval*/
 void* element_get_num(double initial, double final, t_int size);
 
+/*Get english punctuation marks*/
+char* element_get_punctuation_marks();
+
+/*Get all the c chars there is not letters or nums*/
+char* element_get_c_special();
+
 #endif
