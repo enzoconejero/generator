@@ -9,5 +9,10 @@
 #include <math.h>
 
 #define LETTERS_COUNT ('z' - 'a' + 1)
+#define NL printf("\n")
+
+static bool debug_mode = false;
+
+#include "logger.h"
 
 #endif /* COMMONS_INCLUDES_H_ */

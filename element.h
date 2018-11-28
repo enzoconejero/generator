@@ -3,6 +3,7 @@
 #define ELEMENT_H
 
 #include "commons-includes.h"
+#include "logger.h"
 
 typedef enum{
 	UI8,

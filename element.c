@@ -24,30 +24,29 @@ char* element_get_numbers(){
 
 //Semi - tested
 void* element_get_num(double initial, double final, t_int size){
-	// printf("\nFrom %.f telement_get_numo %.f\n", initial, final);
 	if (final < initial){
 		//ERROR
-		// printf("Final less than initial\n");
+		log_screen("Final less than initial");
 		return NULL;
 	}	
 
-	// printf("Final greater than initial\n");
+	log_screen("Final greater than initial");
 
 	bool is_signed;
 
 	if(size >= UI8 && size <= UI64){
 		is_signed = false;
-		// printf("Type is signed\n");
+		log_screen("Type is signed");
 	}
 
 	else if(size >= I8 && size <= I64){
 		is_signed = true;
 
-		// printf("Type is unsigned\n");
+		log_screen("Type is unsigned");
 	}
 
 	else{
-		//ERROR
+		log_screen("Unrecognized type");
 		return NULL;	
 	}
 
@@ -67,14 +66,14 @@ void* element_get_num(double initial, double final, t_int size){
 		break;
 
 	default:
-		//ERROR
+		log_screen("Unrecognized type");
 		return NULL;
 		break;
 	}
 
 	u_int8_t bits = bytes * 8;
 
-	// printf("Type has %d bits\n", bits);
+	log_screen("Type has %d bits", bits);
 
 	double max;
 	double min;
@@ -90,10 +89,10 @@ void* element_get_num(double initial, double final, t_int size){
 		max = pow(2, bits) - 1;
 	}
 
-	// printf("Initial %.f\nMin:    %.f\n", initial, min);
-	// printf("Final %.f\nMax:  %.f\n", final, max);			
+	log_screen("Initial %.f\nMin:    %.f", initial, min);
+	log_screen("Final %.f\nMax:  %.f", final, max);			
 	if( (initial < min) || (final > max) ){
-		// printf("Out of range\n");
+		log_screen("Out of range");
 		//ERROR
 		return NULL;
 	}
