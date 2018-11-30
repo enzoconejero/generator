@@ -13,7 +13,8 @@ int main(int argc, char** argv){
 	language_add_element(language, element_get_upCase(), LETTERS_COUNT, 1);
 	language_add_element(language, element_get_numbers(), 10, 1);
 	language_add_element(language, element_get_c_special(), 23, 1);
-	generate(language);
+	// generate_dmmy(language);
+	generate_lenght(language, 5);
 
 	return 0;
 }

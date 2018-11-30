@@ -126,7 +126,7 @@ void* language_get_element_at(t_language* language, int index){
 	return element;
 }
 
-void generate(t_language* language){
+void generate_dmmy(t_language* language){
 	int lenght_max = 4; //Hardcoded;
 
 	//Inicializations
@@ -232,3 +232,96 @@ void generate(t_language* language){
 	}
 }
 
+void generate_lenght(t_language* language, int length){
+	int lenght_max = length;
+
+	//Inicializations
+	void* elements = language->elements;
+	void* last_element = language->last_element;
+	size_t size = language->elements_size;
+	size_t count = language->elements_count;
+
+	bool equals(void* a,void* b){
+		(*(language->equals))(a,b);
+	};
+
+	void print(void* a){
+		(*(language->print)) (a);
+	}
+
+	int length_current = 1;
+	void* word = malloc(size);
+	int* indexes = malloc(length_current * sizeof(int));
+	for (int i = 0; i < length_current; indexes[i] = 0, ++i);
+	
+	while(length_current <= lenght_max){
+
+		// printf("Lenght: %d\n", length_current); //debug
+		for(int i = 0; i < count; i++){
+			memcpy(word + (length_current-1) * size,
+					elements + i * size,
+					size);
+
+			//SHOW CURRENT WORD
+			for (int i = 0; i < length_current; ++i){
+				print(word + i);
+			}
+			printf("\t");
+		}
+		
+		//Check if is the max word
+		bool is_element_to_change = true;
+		int elements_to_change = 0;
+
+		for (int i = 0; i < length_current && is_element_to_change; ++i){
+
+			is_element_to_change = equals(word + (length_current - 1 - i ) * size, last_element);
+
+			if(is_element_to_change){
+				elements_to_change++;
+			}
+		}
+
+		// printf("%d elements to change of %d\n", elements_to_change, length_current);
+		if (elements_to_change == length_current){
+			log_screen("Is the last word with %d lenght\n", length_current);
+			length_current++;
+
+			free(word);
+			free(indexes);
+
+			word = malloc(length_current);
+			indexes = malloc(length_current * sizeof(int));
+
+			for (int i = 0; i < length_current; ++i){
+				memcpy(word + i * size,
+					elements,
+					size);
+
+				indexes[i] = 0;
+			}
+		}
+
+		else{
+			//Replace the elements which are equals to last_element
+			for (int i = 0; i < elements_to_change; ++i){
+				memcpy(word + (length_current - 1 - i) * size,
+					elements,
+					size);
+				indexes[length_current - 1 - i] = 0;
+			}
+
+			//element++
+			log_screen("Change element at index %d by %d\n",
+				length_current - elements_to_change - 1,
+				*(int8_t*)(elements+ (indexes[length_current - elements_to_change - 1] + 1) * size));
+
+			memcpy(word + (length_current - elements_to_change - 1) * size,
+				elements+ (indexes[length_current - elements_to_change - 1] + 1) * size,
+				size);
+
+			indexes[length_current - elements_to_change - 1] += 1;
+			getchar();
+		}
+	}	
+}

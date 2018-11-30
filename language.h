@@ -31,6 +31,8 @@ void language_set_equal(t_language* language, bool(*equal)(void*,void*));
 
 void* language_get_element_at(t_language* language, int index);
 
-void generate();
+void generate_dmmy(t_language* language);
+
+void generate_lenght(t_language* language, int length);
 
 #endif /* LANGUAGE_H_ */

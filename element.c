@@ -149,11 +149,12 @@ char* element_get_punctuation_marks(){
 	elements[10] = '>';
 	elements[11] = '<';
 	elements[12] = '"';
+	elements[13] = ' ';
 	return elements;
 }
 
 char* element_get_c_special(){
-	char* elements = malloc(23);
+	char* elements = malloc(26);
 	elements[0] = '.';
 	elements[1] = ',';
 	elements[2] = ';';
@@ -177,5 +178,8 @@ char* element_get_c_special(){
 	elements[20] = ']';
 	elements[21] = '{';
 	elements[22] = '}';
+	elements[23] = '<';
+	elements[24] = '>';
+	elements[25] = ' ';
 	return elements;
 }
