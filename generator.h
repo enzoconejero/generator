@@ -7,5 +7,6 @@
 #include "element.h"
 #include "print.h"
 #include "equal.h"
+#include "filter.h"
 
 #endif /* GENERATOR_H_ */

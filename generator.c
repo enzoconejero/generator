@@ -9,10 +9,11 @@ int main(int argc, char** argv){
 	// language_set_print(language, &print_int8);
 	language_set_equal(language, &equals_char);
 	language_set_print(language, &print_char);
+	language_set_filter(language, &filter_name);
 	language_set_element(language, element_get_lowCase(), LETTERS_COUNT, 1);
-	language_add_element(language, element_get_upCase(), LETTERS_COUNT, 1);
-	language_add_element(language, element_get_numbers(), 10, 1);
-	language_add_element(language, element_get_c_special(), 23, 1);
+	// language_add_element(language, element_get_upCase(), LETTERS_COUNT, 1);
+	// language_add_element(language, element_get_numbers(), 10, 1);
+	// language_add_element(language, element_get_c_special(), 23, 1);
 	// generate_dmmy(language);
 	generate_lenght(language, 5);
 

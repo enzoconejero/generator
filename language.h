@@ -5,6 +5,7 @@
 #include "commons-includes.h"
 #include "element.h"
 #include "equal.h"
+#include "filter.h"
 
 typedef struct{
 	size_t elements_count;
@@ -13,6 +14,7 @@ typedef struct{
 	void* last_element;
 	bool (*equals)(void*, void*);
 	void (*print)(void*);
+	bool (*filter)(void* word, int length);
 }t_language;
 
 /*Create a languaje*/
@@ -20,6 +22,8 @@ t_language* language_create();
 void language_destroy(t_language* language);
 // void language_set_language(t_language* language, t_language* language);
 void language_set_print(t_language* language, void (*print)(void* a));
+
+void language_set_filter(t_language* language,bool (*filter)(void* word, int length));
 
 void language_set_element(t_language* language, void* elements, size_t elements_count, size_t elements_size);
 

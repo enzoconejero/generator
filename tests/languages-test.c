@@ -223,5 +223,6 @@ void testLanguageCreate(){
 	CU_ASSERT( language->elements_size == 0 );
 	CU_ASSERT( language->last_element == NULL);
 	CU_ASSERT( language->equals == NULL);
+	CU_ASSERT( language->filter == NULL);
 	language_destroy(language);
 }

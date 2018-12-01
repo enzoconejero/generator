@@ -28,6 +28,13 @@ void language_set_print(t_language* language, void (*print)(void* a)){
 	language->print = print;
 }
 
+void language_set_filter(t_language* language,bool (*filter)(void* word, int length)){
+	if(language->filter != NULL){
+		free(language->filter);
+	}
+	language->filter = filter;
+}
+
 //Tested
 void language_set_element(t_language* language, void* elements, size_t elements_count, size_t elements_size){
 	if(language->elements != NULL){
@@ -234,6 +241,7 @@ void generate_dmmy(t_language* language){
 
 void generate_lenght(t_language* language, int length){
 	int lenght_max = length;
+	int length_initial = 1;
 
 	//Inicializations
 	void* elements = language->elements;
@@ -249,8 +257,12 @@ void generate_lenght(t_language* language, int length){
 		(*(language->print)) (a);
 	}
 
-	int length_current = 1;
-	void* word = malloc(size);
+	bool filter(void* a, int length_of_a){
+		(*(language->filter)) (a, length_of_a);
+	}
+
+	int length_current = length_initial;
+	void* word = malloc(size * length_current);
 	int* indexes = malloc(length_current * sizeof(int));
 	for (int i = 0; i < length_current; indexes[i] = 0, ++i);
 	
@@ -262,11 +274,15 @@ void generate_lenght(t_language* language, int length){
 					elements + i * size,
 					size);
 
-			//SHOW CURRENT WORD
-			for (int i = 0; i < length_current; ++i){
-				print(word + i);
+			/*Filter*/
+			if(filter(word, length_current)){
+				//SHOW CURRENT WORD
+				for (int i = 0; i < length_current; ++i){
+					print(word + i);
+				}
+				printf("\t");
+				getchar();
 			}
-			printf("\t");
 		}
 		
 		//Check if is the max word
@@ -321,7 +337,16 @@ void generate_lenght(t_language* language, int length){
 				size);
 
 			indexes[length_current - elements_to_change - 1] += 1;
-			getchar();
 		}
 	}	
 }
+
+/*
+Setear todo
+mientras (condicion de freno)
+generar
+filtrar
+mostrar - persistir
+siguiente
+*/
+
