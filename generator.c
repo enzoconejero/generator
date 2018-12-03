@@ -64,6 +64,22 @@ void generator_set_initial_word(t_generator* generator, void* word, size_t lengt
 
 }
 
+void generator_set_initial_length(t_generator* generator, size_t length){
+	free(generator->gcb->indexes);
+	free(generator->gcb->word);
+
+	void *word = malloc( length * generator->gcb->element_size );
+	int* indexes = malloc(sizeof(int) * length);
+	for(int i = 0; i < length;  i++){
+		memcpy(word + i * generator->gcb->element_size, generator->gcb->elements, generator->gcb->element_size);
+		indexes[i] = 0;
+	}
+	
+	generator->gcb->current_length = length;
+	generator->gcb->word = word;
+	generator->gcb->indexes = indexes;
+}
+
 void generate(t_generator* generator){
 	t_gcb* gcb = generator->gcb;
 

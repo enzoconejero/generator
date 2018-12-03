@@ -17,8 +17,8 @@ int main(int argc, char** argv){
 
 	generator_set_stop_condition(generator, &stop);
 
-	generator_set_initial_word(generator, "liz", 3);
-
+	// generator_set_initial_word(generator, "liz", 3);
+	generator_set_initial_length(generator, 3);
 	generate( generator );
 
 	return 0;

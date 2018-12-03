@@ -6,5 +6,6 @@ void print_string(t_gcb* gcb){
 	memcpy(name, gcb->word, gcb->current_length);
 	name[gcb->current_length] = '\0';
 	printf("%s\t", name);
+	getchar();
 	free(name);
 }
