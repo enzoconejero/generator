@@ -13,6 +13,29 @@
 
 static bool debug_mode = false;
 
+typedef struct{
+	//General stuff
+	void* word;
+	int* indexes;
+	int current_length;
+	//Language stuff
+	void* elements;
+	void* last_element;
+	size_t element_size;
+	size_t element_count;
+	bool (*equals)(void* a, void*b);
+}t_gcb;
+
+typedef struct{
+	size_t elements_count;
+	size_t elements_size;
+	void* elements;
+	void* last_element;
+	bool (*equals)(void*, void*);
+	void (*print)(void*);
+	bool (*filter)(t_gcb*);
+}t_language;
+
 #include "logger.h"
 
 #endif /* COMMONS_INCLUDES_H_ */

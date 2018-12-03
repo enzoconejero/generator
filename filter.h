@@ -3,7 +3,8 @@
 #define FILTER_H
 
 #include "commons-includes.h"
+#include "language.h"
 
-bool filter_name(void* word, int length);
+bool filter_name(t_gcb* gcb);
 
 #endif
