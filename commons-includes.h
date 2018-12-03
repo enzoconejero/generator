@@ -32,7 +32,7 @@ typedef struct{
 	void* elements;
 	void* last_element;
 	bool (*equals)(void*, void*);
-	void (*print)(void*);
+	void (*print)(t_gcb*);
 	bool (*filter)(t_gcb*);
 }t_language;
 
