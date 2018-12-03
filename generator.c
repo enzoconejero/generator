@@ -10,10 +10,10 @@ t_gcb* gcb_create(t_language* language){
 	gcb->element_count = language->elements_count;
 	gcb->equals = language->equals;
 
-	gcb->word = NULL;
-	gcb->indexes = NULL;
-	gcb->current_length = 0;
-
+	gcb->word = malloc(language->elements_size);
+	memcpy(gcb->word, language->elements, language->elements_size);
+	gcb->indexes = malloc(sizeof(int));
+	gcb->indexes[0] = 0;
 	return gcb;
 }
 
@@ -40,20 +40,40 @@ void generator_set_persister(t_generator* generator, void (*persister)(t_gcb*) )
 	generator->persister = persister;
 }
 
+void generator_set_initial_word(t_generator* generator, void* word, size_t length){
+
+	if(language_is_valid_word(generator->language, word, length)){
+		int* indexes = malloc(sizeof(int) * length);
+		
+		for(int i = 0; i < length; i++){
+			indexes[i] = language_indexOf(generator->language, word + i * generator->language->elements_size);
+		}
+
+		free(generator->gcb->indexes);
+		free(generator->gcb->word);
+
+		generator->gcb->indexes = indexes;
+		generator->gcb->current_length = length;
+		generator->gcb->word = malloc(length * generator->language->elements_size);
+		memcpy(generator->gcb->word, word, length * generator->language->elements_size);
+	}
+
+	else{
+		printf("Error\n");
+	}
+
+}
+
 void generate(t_generator* generator){
 	t_gcb* gcb = generator->gcb;
 
-	gcb->word = malloc(gcb->element_size * gcb->current_length);
-	gcb->indexes = malloc(gcb->current_length * gcb->element_size);
-	for (int i = 0; i < gcb->current_length; 
-		gcb->indexes[i] = 0, 
-		memcpy(gcb->word + i * gcb->element_size, gcb->elements, gcb->element_size),
-		++i);
-
 	while( (*(generator->stop_condition)) (gcb) ){
-		for(int i = 0; i < gcb->element_count; i++){
+		log_screen("Init loop");
+
+		for(int i = 0; i < gcb->element_count - gcb->indexes[gcb->current_length-1]; i++){
+
 			memcpy(gcb->word + (gcb->current_length-1) * gcb->element_size,
-					gcb->elements + i*gcb->element_size,
+					gcb->elements + (i + gcb->indexes[gcb->current_length-1]) * gcb->element_size,
 					gcb->element_size);
 			
 			/*Filter*/
@@ -62,13 +82,13 @@ void generate(t_generator* generator){
 				/*Printer*/
 				if(generator->printer != NULL){
 					(*(generator->printer)) (gcb);
-					log_screen("3.1-La muestra");
+					log_screen("3.1-Show");
 				}
 				
 				/*Persister*/
 				if(generator->persister != NULL){
 					(*(generator->persister))(gcb);
-					log_screen("3.2-La guarda");
+					log_screen("3.2-Persist");
 				}
 			}
 		}
@@ -89,6 +109,7 @@ void generate(t_generator* generator){
 
 		if (elements_to_change == gcb->current_length){
 			//Length++
+			log_screen("4.1-Length++");
 			gcb->current_length++;
 
 			// free( gcb->word );  //TODO: 
@@ -108,7 +129,7 @@ void generate(t_generator* generator){
 
 		else{
 			//Replace the elements which are equals to last_element
-			log_screen("4.2-No aumenta el largo");
+			log_screen("4.2-!Length++");
 			for (int i = 0; i < elements_to_change; ++i){
 				memcpy(gcb->word + (gcb->current_length - 1 - i) * gcb->element_size,
 					gcb->elements,
@@ -124,4 +145,3 @@ void generate(t_generator* generator){
 		}
 	}	
 }
-

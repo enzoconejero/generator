@@ -17,11 +17,13 @@ int main(int argc, char** argv){
 
 	generator_set_stop_condition(generator, &stop);
 
+	generator_set_initial_word(generator, "liz", 3);
+
 	generate( generator );
 
 	return 0;
 }
 
 bool stop(t_gcb* gcb){
-	return gcb->current_length < 5;
+	return gcb->current_length < 20;
 }

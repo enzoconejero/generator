@@ -156,14 +156,13 @@ bool language_has_element(t_language* language, void* element){
 }
 
 bool language_is_valid_word(t_language* language, void* word, size_t length){
-
-	for(int i = 0; i < language->elements_count; i++){
-		if( language_indexOf(x) == -1){
+	for(int i = 0; i < length; i++){
+		if( language_indexOf(language ,word + i * language->elements_size) == -1){
 			return false;
 		}
 	}
 
-	t_gcb gcb = gcb_create(language);
+	t_gcb* gcb = gcb_create(language);
 	gcb->word = word;
 	gcb->current_length = length;
 
