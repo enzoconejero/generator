@@ -36,6 +36,8 @@ typedef struct{
 	bool (*filter)(t_gcb*);
 }t_language;
 
+t_gcb* gcb_create(t_language* language);
+
 #include "logger.h"
 
 #endif /* COMMONS_INCLUDES_H_ */

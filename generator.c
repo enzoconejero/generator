@@ -124,3 +124,4 @@ void generate(t_generator* generator){
 		}
 	}	
 }
+

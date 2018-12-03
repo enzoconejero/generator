@@ -28,4 +28,6 @@ void* language_get_element_at(t_language* language, int index);
 
 int language_indexOf(t_language* language, void* element);
 
+bool language_is_valid_word(t_language* language, void* word, size_t length);
+
 #endif /* LANGUAGE_H_ */

@@ -143,3 +143,29 @@ int language_indexOf(t_language* language, void* element){
 	}
 	return -1;
 }
+
+bool language_has_element(t_language* language, void* element){
+	bool is_equal = false;
+	for(int i = 0; i < language->elements_count; i++){
+		is_equal = (*(language->equals)) (language->elements + i * language->elements_size, element);
+		if(is_equal){
+			return true;
+		}
+	}
+	return false;	
+}
+
+bool language_is_valid_word(t_language* language, void* word, size_t length){
+
+	for(int i = 0; i < language->elements_count; i++){
+		if( language_indexOf(x) == -1){
+			return false;
+		}
+	}
+
+	t_gcb gcb = gcb_create(language);
+	gcb->word = word;
+	gcb->current_length = length;
+
+	return (*(language->filter)) (gcb);
+}

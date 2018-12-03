@@ -14,7 +14,6 @@ typedef struct{
 	void (*persister)(t_gcb*);
 }t_generator;
 
-t_gcb* gcb_create(t_language* language);
 t_generator* generator_create(t_language* language);
 void generator_set_filter(t_generator* generator, bool (*filter)(t_gcb*) );
 void generator_set_stop_condition(t_generator* generator, bool (*stop_condition)(t_gcb*) );
