@@ -10,6 +10,7 @@ t_language* language_create(){
 	language->last_element = NULL;
 	language->equals = NULL;
 	language->print = NULL;
+	// language->filter = &filter_default;
 	return language;
 }
 
@@ -22,16 +23,16 @@ void language_destroy(t_language* language){
 
 //Tested
 void language_set_print(t_language* language, void (*print)(t_gcb*)){
-	if(language->print != NULL){
-		free(language->print);
-	}
+	// if(language->print != NULL){
+	// 	free(language->print);
+	// }
 	language->print = print;
 }
 
 void language_set_filter(t_language* language,bool (*filter)(t_gcb*)){
-	if(language->filter != NULL){
-		free(language->filter);
-	}
+	// if(language->filter != NULL){
+	// 	free(language->filter);
+	// }
 	language->filter = filter;
 }
 

@@ -1,6 +1,10 @@
 
 #include "filter.h"
 
+bool filter_default(t_gcb* gcb){
+	return true;
+}
+
 bool filter_name(t_gcb* gcb){
 
 	void* word = gcb->word;
@@ -85,3 +89,69 @@ bool filter_name(t_gcb* gcb){
 
 	return false;
 }
+
+bool filter_sudoku(t_gcb* gcb){
+	
+	bool valid = true;
+	bool there_is_num[9];
+	int8_t* sudoku = gcb->word;
+	int8_t counters[81];
+	// printf("Entrado\n");
+
+	if (sudoku[1] == sudoku[2]){
+		return false;
+	}
+
+	for(int i = 0; i < 9; i++){
+		for (int j = 0; j < 81; counters[j] = 0, j++);
+		counters[sudoku[i]]++;
+	}
+
+	for (int i = 0; i < 81 && valid; valid &= (counters[i] == 9) ,i++);
+
+	if(valid){
+
+		// for (int i = 0; i < 9; there_is_num[i] = false, i++);
+
+		return true;		
+
+	}
+
+	total++;
+	if ((total % 1000000) == 0){
+		NL;
+		total = 0;
+		mill++;
+		printf("%lu Millon\n", mill);
+
+		for(int i = 0; i < 81; i++){
+			printf("%d\t", sudoku[i]);
+			if( ((i+1) % 9) == 0 ){
+				NL;
+			}
+		}
+	}
+	return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

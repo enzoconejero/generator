@@ -24,7 +24,7 @@ t_generator* generator_create(t_language* language){
 	generator->printer = (void (*)(t_gcb*)) language->print;
 	generator->filter = language->filter;
 	generator->gcb = gcb_create(language);
-
+	generator->stop_condition = &stop_condition_default;
 	return generator;
 }
 
@@ -32,8 +32,16 @@ void generator_set_filter(t_generator* generator, bool (*filter)(t_gcb*) ){
 	generator->filter = filter;
 }
 
+// bool filter_default(t_gcb* gcb){
+// 	return true;
+// }
+
 void generator_set_stop_condition(t_generator* generator, bool (*stop_condition)(t_gcb*) ){
 	generator->stop_condition = stop_condition;
+}
+
+bool stop_condition_default(t_gcb* gcb){
+	return false;
 }
 
 void generator_set_persister(t_generator* generator, void (*persister)(t_gcb*) ){
@@ -81,9 +89,10 @@ void generator_set_initial_length(t_generator* generator, size_t length){
 }
 
 void generate(t_generator* generator){
+	log_screen("Start generator");
 	t_gcb* gcb = generator->gcb;
 
-	while( (*(generator->stop_condition)) (gcb) ){
+	while( !(*(generator->stop_condition)) (gcb) ){
 		log_screen("Init loop");
 
 		for(int i = 0; i < gcb->element_count - gcb->indexes[gcb->current_length-1]; i++){
@@ -94,7 +103,7 @@ void generate(t_generator* generator){
 			
 			/*Filter*/
 			if( (*(generator->filter)) (gcb)){
-
+				printf("Pasa\n");
 				/*Printer*/
 				if(generator->printer != NULL){
 					(*(generator->printer)) (gcb);
