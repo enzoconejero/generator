@@ -4,10 +4,13 @@
 bool stop(t_gcb* gcb);
 bool stop_sudoku(t_gcb* gcb);
 void print_string(t_gcb* gcb);
+void show_status();
 
 int main(int argc, char** argv){
+	/*
 	total = 0;
 	mill = 0;
+	*/
 	
 	t_language* language = language_create();
 	/*
@@ -25,20 +28,30 @@ int main(int argc, char** argv){
 	generate( generator );
 	*/
 
+	
 	language_set_equal(language, &equals_int8);
 	language_set_print(language, &print_sudoku);
-	// printf("0\n");
 	language_set_filter(language, &filter_sudoku);
-	// printf("1\n");
 	language_set_element(language, element_get_num(1, 9, I8), 9, 1);
-	// printf("2\n");
 	t_generator* generator = generator_create(language);
-	// printf("3\n");
-	generator_set_initial_length(generator, 81);
-	// printf("4\n");
+
+	int8_t initial[81] = 
+	{1,2,3,4,5,6,7,8,9
+	,4,5,6,7,8,9,1,2,3
+	,7,8,9,1,2,3,4,5,6
+	,2,3,1,6,4,5,8,9,7
+	,6,4,5,8,9,7,2,3,1
+	,8,9,7,2,3,1,6,4,5
+	,3,1,2,5,6,4,9,7,8
+	,5,6,4,9,7,8,3,1,2
+	,9,7,8,3,1,2,5,6,4};
+	generator_set_initial_word(generator, initial, 81);
 	generator_set_stop_condition(generator, &stop_sudoku);
-	// printf("5\n");
+	
+	pthread_t show;
+	pthread_create(&show, NULL, (void*)&show_status, NULL);
 	generate(generator);
+	
 
 	return 0;
 }
@@ -49,4 +62,20 @@ bool stop(t_gcb* gcb){
 
 bool stop_sudoku(t_gcb* gcb){
 	return gcb->current_length != 81;
+}
+
+void show_status(){
+	unsigned long aux;
+	unsigned long minutos = 0;
+
+	while(1){
+
+		sleep(60);
+		
+		aux = total;
+		total %= 1000000; 
+		minutos++;
+
+		printf("Minuto %lu, Millones %lu\n", minutos, aux/1000000);
+	}
 }

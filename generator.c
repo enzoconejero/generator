@@ -17,6 +17,11 @@ t_gcb* gcb_create(t_language* language){
 	return gcb;
 }
 
+void gcb_free(t_gcb* gcb){
+	free(gcb->indexes);
+	free(gcb);
+}
+
 t_generator* generator_create(t_language* language){
 	t_generator* generator = malloc(sizeof(t_generator));
 
@@ -31,10 +36,6 @@ t_generator* generator_create(t_language* language){
 void generator_set_filter(t_generator* generator, bool (*filter)(t_gcb*) ){
 	generator->filter = filter;
 }
-
-// bool filter_default(t_gcb* gcb){
-// 	return true;
-// }
 
 void generator_set_stop_condition(t_generator* generator, bool (*stop_condition)(t_gcb*) ){
 	generator->stop_condition = stop_condition;

@@ -1,4 +1,4 @@
 
 #!/bin/bash
 
-gcc -g *.c -o generator -lm;
+gcc -g *.c -o generator -lm -lpthread;

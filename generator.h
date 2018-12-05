@@ -21,7 +21,6 @@ void generator_set_persister(t_generator* generator, void (*persister)(t_gcb*) )
 void generator_set_initial_word(t_generator* generator, void* word, size_t length);
 void generator_set_initial_length(t_generator* generator, size_t length);
 void generate(t_generator* generator);
-
 bool stop_condition_default(t_gcb*);
-// bool filter_default(t_gcb*);
+
 #endif

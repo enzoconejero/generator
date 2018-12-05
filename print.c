@@ -14,10 +14,9 @@ void print_sudoku(t_gcb* gcb){
 	NL;
 	printf("Sudoku:\n");
 	for(int i = 0; i < 81; i++){
-		printf("%d\t", *(int8_t*)(gcb->word + i) );
-		if( ((i+1) % 9) == 0 ){
-					NL;
-		}
+		printf("%d", *(int8_t*)(gcb->word + i) );
+
+		if( ((i+1) % 9) == 0 ){NL;}
 	}
 	getchar();
 }

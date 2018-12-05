@@ -166,6 +166,7 @@ bool language_is_valid_word(t_language* language, void* word, size_t length){
 	t_gcb* gcb = gcb_create(language);
 	gcb->word = word;
 	gcb->current_length = length;
-
-	return (*(language->filter)) (gcb);
+	bool is_valid = (*(language->filter)) (gcb);
+	gcb_free(gcb);
+	return is_valid;
 }

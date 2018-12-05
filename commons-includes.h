@@ -6,7 +6,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 #include <math.h>
+#include <unistd.h>
+#include <pthread.h>
 
 #define LETTERS_COUNT ('z' - 'a' + 1)
 #define NL printf("\n")
@@ -37,7 +40,7 @@ typedef struct{
 }t_language;
 
 t_gcb* gcb_create(t_language* language);
-
+void gcb_free(t_gcb* gcb);
 #include "logger.h"
 
 #endif /* COMMONS_INCLUDES_H_ */
