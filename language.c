@@ -109,7 +109,7 @@ void language_add_element(t_language* language, void* elements, size_t elements_
 
 	else{
 		printf("The size of elements <%d> should be equals to the size of existing elements <%d>\n",
-				elements_count, language->elements_size);
+				(int)elements_count, (int)language->elements_size);
 	}
 }
 
