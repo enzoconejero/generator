@@ -6,7 +6,7 @@ void print_string(t_gcb* gcb){
 	memcpy(name, gcb->word, gcb->current_length);
 	name[gcb->current_length] = '\0';
 	printf("%s\t", name);
-	getchar();
+	// getchar();
 	free(name);
 }
 
@@ -18,5 +18,4 @@ void print_sudoku(t_gcb* gcb){
 
 		if( ((i+1) % 9) == 0 ){NL;}
 	}
-	getchar();
 }

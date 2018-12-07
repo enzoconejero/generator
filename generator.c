@@ -93,7 +93,7 @@ void generate(t_generator* generator){
 	log_screen("Start generator");
 	t_gcb* gcb = generator->gcb;
 
-	while( !(*(generator->stop_condition)) (gcb) ){
+	while( ! ((*(generator->stop_condition)) (gcb)) ){
 		log_screen("Init loop");
 
 		for(int i = 0; i < gcb->element_count - gcb->indexes[gcb->current_length-1]; i++){
@@ -104,7 +104,6 @@ void generate(t_generator* generator){
 			
 			/*Filter*/
 			if( (*(generator->filter)) (gcb)){
-				printf("Pasa\n");
 				/*Printer*/
 				if(generator->printer != NULL){
 					(*(generator->printer)) (gcb);

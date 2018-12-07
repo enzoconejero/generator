@@ -2,6 +2,7 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
+#include <signal.h>
 #include "commons-includes.h"
 #include "language.h"
 #include "element.h"
