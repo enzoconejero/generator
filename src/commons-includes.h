@@ -14,8 +14,6 @@
 #define LETTERS_COUNT ('z' - 'a' + 1)
 #define NL printf("\n")
 
-static bool debug_mode = false;
-
 typedef struct{
 	//General stuff
 	void* word;
@@ -41,6 +39,5 @@ typedef struct{
 
 t_gcb* gcb_create(t_language* language);
 void gcb_free(t_gcb* gcb);
-#include "logger.h"
 
 #endif /* COMMONS_INCLUDES_H_ */

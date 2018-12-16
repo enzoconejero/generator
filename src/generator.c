@@ -67,9 +67,7 @@ void generator_set_initial_word(t_generator* generator, void* word, size_t lengt
 		memcpy(generator->gcb->word, word, length * generator->language->elements_size);
 	}
 
-	else{
-		printf("Error\n");
-	}
+	//ERROR
 
 }
 
@@ -90,11 +88,9 @@ void generator_set_initial_length(t_generator* generator, size_t length){
 }
 
 void generate(t_generator* generator){
-	log_screen("Start generator");
 	t_gcb* gcb = generator->gcb;
 
 	while( ! ((*(generator->stop_condition)) (gcb)) ){
-		log_screen("Init loop");
 
 		for(int i = 0; i < gcb->element_count - gcb->indexes[gcb->current_length-1]; i++){
 
@@ -107,13 +103,11 @@ void generate(t_generator* generator){
 				/*Printer*/
 				if(generator->printer != NULL){
 					(*(generator->printer)) (gcb);
-					log_screen("3.1-Show");
 				}
 				
 				/*Persister*/
 				if(generator->persister != NULL){
 					(*(generator->persister))(gcb);
-					log_screen("3.2-Persist");
 				}
 			}
 		}
@@ -134,7 +128,6 @@ void generate(t_generator* generator){
 
 		if (elements_to_change == gcb->current_length){
 			//Length++
-			log_screen("4.1-Length++");
 			gcb->current_length++;
 
 			// free( gcb->word );  //TODO: 
@@ -154,7 +147,6 @@ void generate(t_generator* generator){
 
 		else{
 			//Replace the elements which are equals to last_element
-			log_screen("4.2-!Length++");
 			for (int i = 0; i < elements_to_change; ++i){
 				memcpy(gcb->word + (gcb->current_length - 1 - i) * gcb->element_size,
 					gcb->elements,

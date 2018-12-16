@@ -26,27 +26,20 @@ char* element_get_numbers(){
 void* element_get_num(double initial, double final, t_int size){
 	if (final < initial){
 		//ERROR
-		log_screen("Final less than initial");
 		return NULL;
 	}	
-
-	log_screen("Final greater than initial");
 
 	bool is_signed;
 
 	if(size >= UI8 && size <= UI64){
 		is_signed = false;
-		log_screen("Type is signed");
 	}
 
 	else if(size >= I8 && size <= I64){
 		is_signed = true;
-
-		log_screen("Type is unsigned");
 	}
 
 	else{
-		log_screen("Unrecognized type");
 		return NULL;	
 	}
 
@@ -66,14 +59,11 @@ void* element_get_num(double initial, double final, t_int size){
 		break;
 
 	default:
-		log_screen("Unrecognized type");
 		return NULL;
 		break;
 	}
 
 	u_int8_t bits = bytes * 8;
-
-	log_screen("Type has %d bits", bits);
 
 	double max;
 	double min;
@@ -89,10 +79,7 @@ void* element_get_num(double initial, double final, t_int size){
 		max = pow(2, bits) - 1;
 	}
 
-	log_screen("Initial %.f\nMin:    %.f", initial, min);
-	log_screen("Final %.f\nMax:  %.f", final, max);			
 	if( (initial < min) || (final > max) ){
-		log_screen("Out of range");
 		//ERROR
 		return NULL;
 	}

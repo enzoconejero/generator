@@ -3,7 +3,6 @@
 #define GENERATOR_H
 
 #include "commons-includes.h"
-#include "language.h"
 
 typedef struct{
 	t_language* language;
@@ -13,6 +12,8 @@ typedef struct{
 	void (*printer)(t_gcb*);
 	void (*persister)(t_gcb*);
 }t_generator;
+
+#include "language.h"
 
 t_generator* generator_create(t_language* language);
 void generator_set_filter(t_generator* generator, bool (*filter)(t_gcb*) );

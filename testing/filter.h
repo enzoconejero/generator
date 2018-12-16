@@ -2,8 +2,7 @@
 #ifndef FILTER_H
 #define FILTER_H
 
-#include "commons-includes.h"
-#include "language.h"
+#include <generator/generator.h>
 
 unsigned long total;
 unsigned long mill;

@@ -1,6 +1,2 @@
-binaries/
-generator
-*run_test*
-names*
-*.status
-*.txt
+
+library/

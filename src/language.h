@@ -5,7 +5,6 @@
 #include "commons-includes.h"
 #include "element.h"
 #include "equal.h"
-#include "filter.h"
 
 /*Create a languaje*/
 t_language* language_create();
