@@ -11,8 +11,10 @@ if [ -f /usr/lib/libgenerator.so ]; then
 	sudo rm /usr/lib/libgenerator.so
 fi
 
+
+
 sudo mv libgenerator.so /usr/lib/;
-sudo chmod 755 usr/lib/libgenerator.so 
+sudo chmod 755 /usr/lib/libgenerator.so
 
 if [ -d /usr/include/generator ]; then
 	sudo rm /usr/include/generator/*
